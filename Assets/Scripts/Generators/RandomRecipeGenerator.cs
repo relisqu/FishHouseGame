@@ -15,8 +15,8 @@ public class RandomRecipeGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            List<IngredientType> recipe = GenerateRecipe();
-            PrintRecipe(recipe);
+            (RandomRecipeData _,  List<IngredientType>) recipe = GenerateRecipe();
+            PrintRecipe(recipe.Item2);
         }
     }
 
@@ -31,7 +31,7 @@ public class RandomRecipeGenerator : MonoBehaviour
         Debug.Log(output);
     }
 
-    public List<IngredientType> GenerateRecipe()
+    public (RandomRecipeData, List<IngredientType>) GenerateRecipe()
     {
         RandomRecipeData recipeData = description.randomRecipesDescription[GenerateTemplateNumber()];
 
@@ -92,8 +92,7 @@ public class RandomRecipeGenerator : MonoBehaviour
             }
         }
 
-        Debug.Log("Name: "+recipeData.name+" time to cook: "+recipeData.TimeToCook+ "s" );
-        return Ingredients;
+        return (recipeData, ingridients);
     }
 
     private RandomIngredientData GetIngredientData(IngredientType type, List<RandomIngredientData> datas)
@@ -129,4 +128,4 @@ public class RandomRecipeGenerator : MonoBehaviour
     {
         return Random.Range(0, description.randomRecipesDescription.Count);
     }
-}
+} 
