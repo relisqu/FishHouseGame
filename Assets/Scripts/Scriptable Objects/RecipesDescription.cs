@@ -18,20 +18,20 @@ public class RecipeData
     [field: SerializeField] public string name { get; set; }
     [field: SerializeField] public string description { get; set; }
     [field: SerializeField, Tooltip("In Seconds")] public float TimeToCook { get; set; }
-    [field: SerializeField] public List<IngridientData> Ingridients { get; set; }
+    [field: SerializeField] public List<IngredientData> Ingredients { get; set; }
 
     
 
 
 }
 
-public class IngridientData
+public class IngredientData
 {
-    [field: SerializeField] public IngridientType Ingridient { get; set; }
+    [field: SerializeField] public IngredientType Ingredient { get; set; }
     [field: SerializeField] public int Amount { get; set; }
 }
 
-public enum IngridientType {
+public enum IngredientType {
     None,
     Fish,
     Bun,

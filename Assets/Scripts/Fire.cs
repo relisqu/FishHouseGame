@@ -8,6 +8,7 @@ public class Fire : MonoBehaviour
     {
         if (other.TryGetComponent(out Enemy enemy))
         {
+            enemy.GetComponent<Health>().TakeDamage(0.1f);
         }
     }
 }
