@@ -21,7 +21,119 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: <ArtifactsDescriptions>k__BackingField
-      Entry: 6
+    - Name: <recipesDescription>k__BackingField
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[RecipeData, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 1|RecipeData, Assembly-CSharp
+    - Name: <name>k__BackingField
+      Entry: 1
+      Data: Sushi
+    - Name: <description>k__BackingField
+      Entry: 1
+      Data: yeah baby
+    - Name: <TimeToCook>k__BackingField
+      Entry: 4
+      Data: 30
+    - Name: <Ingridients>k__BackingField
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[IngridientData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 3|IngridientData, Assembly-CSharp
+    - Name: <Ingridient>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: <Amount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
       Data: 
-  <Prefab>k__BackingField: {fileID: 0}
+    - Name: 
+      Entry: 7
+      Data: 4|IngridientData, Assembly-CSharp
+    - Name: <Ingridient>k__BackingField
+      Entry: 3
+      Data: 3
+    - Name: <Amount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|RecipeData, Assembly-CSharp
+    - Name: <name>k__BackingField
+      Entry: 1
+      Data: Fish Sandwich
+    - Name: <description>k__BackingField
+      Entry: 1
+      Data: Just like in Subway
+    - Name: <TimeToCook>k__BackingField
+      Entry: 4
+      Data: 5
+    - Name: <Ingridients>k__BackingField
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[IngridientData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 7|IngridientData, Assembly-CSharp
+    - Name: <Ingridient>k__BackingField
+      Entry: 3
+      Data: 2
+    - Name: <Amount>k__BackingField
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|IngridientData, Assembly-CSharp
+    - Name: <Ingridient>k__BackingField
+      Entry: 3
+      Data: 4
+    - Name: <Amount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

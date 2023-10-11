@@ -37,4 +37,5 @@ public enum IngridientType {
     Bun,
     Rice,
     FriedFish,
+
 }
