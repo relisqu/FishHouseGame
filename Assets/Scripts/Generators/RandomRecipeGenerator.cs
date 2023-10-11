@@ -15,8 +15,8 @@ public class RandomRecipeGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            List<IngridientType> recipe = GenerateRecipe();
-            PrintRecipe(recipe);
+            (RandomRecipeData _,  List<IngridientType>) recipe = GenerateRecipe();
+            PrintRecipe(recipe.Item2);
         }
     }
 
@@ -30,7 +30,7 @@ public class RandomRecipeGenerator : MonoBehaviour
         Debug.Log(output);
     }
 
-    public List<IngridientType> GenerateRecipe()
+    public (RandomRecipeData, List<IngridientType>) GenerateRecipe()
     {
         RandomRecipeData recipeData = description.randomRecipesDescription[GenerateTemplateNumber()];
 
@@ -86,7 +86,7 @@ public class RandomRecipeGenerator : MonoBehaviour
             }
         }
 
-        return ingridients;
+        return (recipeData, ingridients);
     }
 
     private RandomIngridientData GetIngridientData(IngridientType type, List<RandomIngridientData> datas)
