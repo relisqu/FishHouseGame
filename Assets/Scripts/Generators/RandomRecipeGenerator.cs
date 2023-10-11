@@ -92,7 +92,7 @@ public class RandomRecipeGenerator : MonoBehaviour
             }
         }
 
-        return (recipeData, ingridients);
+        return (recipeData, Ingredients);
     }
 
     private RandomIngredientData GetIngredientData(IngredientType type, List<RandomIngredientData> datas)

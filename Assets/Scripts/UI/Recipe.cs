@@ -7,9 +7,9 @@ public class Recipe : MonoBehaviour
     [SerializeField] GameObject IngridientCell;
     public RectTransform rectTransform;
     List<GameObject> ingridientCells;
-    public List<IngridientType> ingridientTypes;
+    public List<IngredientType> ingridientTypes;
 
-    public void CreateRecipe(List<IngridientType> ingridients, bool stack, RandomRecipeData description)
+    public void CreateRecipe(List<IngredientType> ingridients, bool stack, RandomRecipeData description)
     {
         ingridientTypes = ingridients;
         rectTransform = GetComponent<RectTransform>();
@@ -18,9 +18,9 @@ public class Recipe : MonoBehaviour
 
         if (stack)
         {
-            List<IngridientType> uniqueIngridients = new();
-            Dictionary<IngridientType, int> uniqueIngridientsWithAmount = new();
-            foreach (IngridientType ingridient in ingridients)
+            List<IngredientType> uniqueIngridients = new();
+            Dictionary<IngredientType, int> uniqueIngridientsWithAmount = new();
+            foreach (IngredientType ingridient in ingridients)
             {
                 if (uniqueIngridients.Contains(ingridient))
                 {
@@ -33,11 +33,14 @@ public class Recipe : MonoBehaviour
                 }
             }
 
-            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y + IngridientCell.GetComponent<RectTransform>().rect.height * (uniqueIngridientsWithAmount.Count-1));
-            rectTransform.position -= new Vector3(0, IngridientCell.GetComponent<RectTransform>().rect.height * uniqueIngridientsWithAmount.Count, 0);
+            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x,
+                rectTransform.sizeDelta.y + IngridientCell.GetComponent<RectTransform>().rect.height *
+                (uniqueIngridientsWithAmount.Count - 1));
+            rectTransform.position -= new Vector3(0,
+                IngridientCell.GetComponent<RectTransform>().rect.height * uniqueIngridientsWithAmount.Count, 0);
 
 
-            foreach (KeyValuePair<IngridientType, int> kv in uniqueIngridientsWithAmount)
+            foreach (KeyValuePair<IngredientType, int> kv in uniqueIngridientsWithAmount)
             {
                 CreateIngridient(kv.Key, kv.Value);
             }
@@ -45,33 +48,36 @@ public class Recipe : MonoBehaviour
 
         else
         {
-            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y + IngridientCell.GetComponent<RectTransform>().rect.height * (ingridients.Count-1));
-            rectTransform.position -= new Vector3(0, IngridientCell.GetComponent<RectTransform>().rect.height * ingridients.Count, 0);
-            foreach (IngridientType ingridient in ingridients)
+            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x,
+                rectTransform.sizeDelta.y +
+                IngridientCell.GetComponent<RectTransform>().rect.height * (ingridients.Count - 1));
+            rectTransform.position -= new Vector3(0,
+                IngridientCell.GetComponent<RectTransform>().rect.height * ingridients.Count, 0);
+            foreach (IngredientType ingridient in ingridients)
             {
                 CreateIngridient(ingridient, 0);
             }
         }
     }
 
-    private void CreateIngridient(IngridientType ingridient, int amount)
+    private void CreateIngridient(IngredientType ingridient, int amount)
     {
-
-        
         var cell = Instantiate(IngridientCell, transform);
         cell.SetActive(true);
-        
+
         float height = IngridientCell.GetComponent<RectTransform>().rect.height;
         //cell.transform.Translate(Vector3.down * ingridientCells.Count * height, Space.World);
-        
+
         if (ingridientCells.Count == 0)
         {
             cell.transform.localPosition = new Vector3(0, -height + rectTransform.rect.height / 2, 0);
         }
         else
         {
-            cell.transform.localPosition = ingridientCells[ingridientCells.Count - 1].transform.localPosition + new Vector3(0, -height , 0);
+            cell.transform.localPosition = ingridientCells[ingridientCells.Count - 1].transform.localPosition +
+                                           new Vector3(0, -height, 0);
         }
+
         UnityEngine.UI.Text text = cell.GetComponentInChildren<UnityEngine.UI.Text>();
         if (amount > 0)
         {
@@ -83,7 +89,5 @@ public class Recipe : MonoBehaviour
         }
 
         ingridientCells.Add(cell);
-
-        
     }
 }
