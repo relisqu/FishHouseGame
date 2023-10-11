@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a81b77ea7645cc41b831c8a39543047, type: 3}
+  m_Script: {fileID: 11500000, guid: d7a5956c7e8b6e54cb5b63d5e8195558, type: 3}
   m_Name: New Random Recipes Description
   m_EditorClassIdentifier: 
   serializationData:
@@ -27,158 +27,128 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 1|RandomRecipeData, Assembly-CSharp
     - Name: <name>k__BackingField
       Entry: 1
-      Data: Sandwich
+      Data: Sushi
     - Name: <description>k__BackingField
       Entry: 6
       Data: 
-    - Name: <IngridientAmountRange>k__BackingField
+    - Name: <IngredientAmountRange>k__BackingField
       Entry: 7
       Data: UnityEngine.Vector2Int, UnityEngine.CoreModule
     - Name: 
       Entry: 3
-      Data: 3
+      Data: 0
     - Name: 
       Entry: 3
-      Data: 5
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: <TimeToCook>k__BackingField
       Entry: 4
-      Data: 5
-    - Name: <Ingridients>k__BackingField
+      Data: 12
+    - Name: <Ingredients>k__BackingField
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[RandomIngridientData, Assembly-CSharp]],
+      Data: 2|System.Collections.Generic.List`1[[RandomIngredientData, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 7
-      Data: 3|RandomIngridientData, Assembly-CSharp
-    - Name: <Ingridient>k__BackingField
-      Entry: 3
-      Data: 2
-    - Name: <Amount>k__BackingField
-      Entry: 3
-      Data: 1
-    - Name: <Probabilty>k__BackingField
-      Entry: 4
-      Data: 2
-    - Name: <ExcludedCombo>k__BackingField
-      Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[IngridientType, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 3
       Data: 2
     - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
       Entry: 7
-      Data: 5|RandomIngridientData, Assembly-CSharp
-    - Name: <Ingridient>k__BackingField
+      Data: 3|RandomIngredientData, Assembly-CSharp
+    - Name: <Ingredient>k__BackingField
       Entry: 3
       Data: 1
     - Name: <Amount>k__BackingField
       Entry: 3
       Data: 1
-    - Name: <Probabilty>k__BackingField
+    - Name: <Probability>k__BackingField
       Entry: 4
-      Data: 0.5
+      Data: 1
     - Name: <ExcludedCombo>k__BackingField
-      Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[IngridientType, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 3
-      Data: 4
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 7|RandomIngridientData, Assembly-CSharp
-    - Name: <Ingridient>k__BackingField
-      Entry: 3
-      Data: 4
-    - Name: <Amount>k__BackingField
-      Entry: 3
-      Data: 1
-    - Name: <Probabilty>k__BackingField
-      Entry: 4
-      Data: 0.5
-    - Name: <ExcludedCombo>k__BackingField
-      Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[IngridientType, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 9|RandomIngridientData, Assembly-CSharp
-    - Name: <Ingridient>k__BackingField
+      Data: 4|RandomIngredientData, Assembly-CSharp
+    - Name: <Ingredient>k__BackingField
       Entry: 3
       Data: 3
     - Name: <Amount>k__BackingField
       Entry: 3
       Data: 1
-    - Name: <Probabilty>k__BackingField
+    - Name: <Probability>k__BackingField
       Entry: 4
-      Data: 0.5
-    - Name: <ExcludedCombo>k__BackingField
-      Entry: 7
-      Data: 10|System.Collections.Generic.List`1[[IngridientType, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
       Data: 1
+    - Name: <ExcludedCombo>k__BackingField
+      Entry: 6
+      Data: 
     - Name: 
-      Entry: 3
-      Data: 0
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|RandomRecipeData, Assembly-CSharp
+    - Name: <name>k__BackingField
+      Entry: 1
+      Data: Sashimi
+    - Name: <description>k__BackingField
+      Entry: 6
+      Data: 
+    - Name: <IngredientAmountRange>k__BackingField
+      Entry: 7
+      Data: UnityEngine.Vector2Int, UnityEngine.CoreModule
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <TimeToCook>k__BackingField
+      Entry: 4
+      Data: 12
+    - Name: <Ingredients>k__BackingField
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[RandomIngredientData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 7|RandomIngredientData, Assembly-CSharp
+    - Name: <Ingredient>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: <Amount>k__BackingField
+      Entry: 3
+      Data: 2
+    - Name: <Probability>k__BackingField
+      Entry: 4
+      Data: 2
+    - Name: <ExcludedCombo>k__BackingField
+      Entry: 6
       Data: 
     - Name: 
       Entry: 8

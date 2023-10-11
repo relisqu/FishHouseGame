@@ -42,7 +42,7 @@ public class RecipeUI : MonoBehaviour
             Scroll();
     }
 
-    public void AddRecipe(List<IngridientType> ingridients, RandomRecipeData description, int ID)
+    public void AddRecipe(List<IngredientType> ingridients, RandomRecipeData description, int ID)
     {
         var recipe = Instantiate(recipePrefab, RecipeField.transform).GetComponent<Recipe>();
         recipe.CreateRecipe(ingridients, CollapseIngridients, description);

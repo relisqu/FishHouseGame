@@ -5,9 +5,9 @@ using UnityEngine;
 public class RandomRecipeGenerator : MonoBehaviour
 {
     [SerializeField] RandomRecipesDescription description;
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -15,46 +15,52 @@ public class RandomRecipeGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            (RandomRecipeData _,  List<IngridientType>) recipe = GenerateRecipe();
+            (RandomRecipeData _,  List<IngredientType>) recipe = GenerateRecipe();
             PrintRecipe(recipe.Item2);
         }
     }
 
-    private void PrintRecipe(List<IngridientType> ingridients)
+    private void PrintRecipe(List<IngredientType> Ingredients)
     {
         string output = "";
-        foreach (var ingr in ingridients)
+        foreach (var ingr in Ingredients)
         {
             output += ingr.ToString() + " ";
         }
+
         Debug.Log(output);
     }
 
-    public (RandomRecipeData, List<IngridientType>) GenerateRecipe()
+    public (RandomRecipeData, List<IngredientType>) GenerateRecipe()
     {
         RandomRecipeData recipeData = description.randomRecipesDescription[GenerateTemplateNumber()];
 
-        int amountOfIngridients = Random.Range(recipeData.IngridientAmountRange.x, recipeData.IngridientAmountRange.y + 1);
-        List<IngridientType> ingridients = new();
-        List<IngridientType> avaibleIngridiens = new();
+        int amountOfIngredients =
+            Random.Range(recipeData.IngredientAmountRange.x, recipeData.IngredientAmountRange.y + 1);
+        List<IngredientType> Ingredients = new();
+        List<IngredientType> avaibleIngridiens = new();
 
-        foreach (var ingridient in recipeData.Ingridients)
+        foreach (var Ingredient in recipeData.Ingredients)
         {
-            avaibleIngridiens.Add(ingridient.Ingridient);
+            avaibleIngridiens.Add(Ingredient.Ingredient);
         }
 
-        foreach (var ingridient in recipeData.Ingridients)
+        foreach (var Ingredient in recipeData.Ingredients)
         {
-            if (ingridient.Probabilty < 1)
+            if (Ingredient.Probability < 1)
                 continue;
 
-            if (!avaibleIngridiens.Contains(ingridient.Ingridient))
+            if (!avaibleIngridiens.Contains(Ingredient.Ingredient))
                 continue;
 
-            avaibleIngridiens.RemoveAll((IngridientType type) => { return ingridient.ExcludedCombo.Contains(type); });
+            if (Ingredient.ExcludedCombo != null)
+            {
+                avaibleIngridiens.RemoveAll(
+                    (IngredientType type) => { return Ingredient.ExcludedCombo.Contains(type); });
+            }
 
-            ingridients.AddRange(TakeRandomlyIngridient(ingridient.Probabilty, ingridient.Ingridient));
-            
+
+            Ingredients.AddRange(TakeRandomlyIngredient(Ingredient.Probability, Ingredient.Ingredient));
         }
 
         while (true)
@@ -62,44 +68,45 @@ public class RandomRecipeGenerator : MonoBehaviour
             if (avaibleIngridiens.Count <= 0)
                 break;
 
-            if (ingridients.Count >= amountOfIngridients)
+            if (Ingredients.Count >= amountOfIngredients)
                 break;
 
             if (avaibleIngridiens.Count == 1)
             {
-                ingridients.AddRange(TakeRandomlyIngridient(
-                    amountOfIngridients - ingridients.Count,
+                Ingredients.AddRange(TakeRandomlyIngredient(
+                    amountOfIngredients - Ingredients.Count,
                     avaibleIngridiens[0]));
             }
 
             int index = Random.Range(0, avaibleIngridiens.Count);
-            RandomIngridientData data = GetIngridientData(avaibleIngridiens[index], recipeData.Ingridients);
+            RandomIngredientData data = GetIngredientData(avaibleIngridiens[index], recipeData.Ingredients);
             if (data != null)
             {
-                var amount = TakeRandomlyIngridient(data.Probabilty, data.Ingridient);
+                var amount = TakeRandomlyIngredient(data.Probability, data.Ingredient);
 
                 if (amount.Count <= 0)
                     continue;
 
-                ingridients.AddRange(amount);
-                avaibleIngridiens.RemoveAll((IngridientType type) => { return data.ExcludedCombo.Contains(type); });
+                Ingredients.AddRange(amount);
+                avaibleIngridiens.RemoveAll((IngredientType type) => { return data.ExcludedCombo.Contains(type); });
             }
         }
 
-        return (recipeData, ingridients);
+        return (recipeData, Ingredients);
     }
 
-    private RandomIngridientData GetIngridientData(IngridientType type, List<RandomIngridientData> datas)
+    private RandomIngredientData GetIngredientData(IngredientType type, List<RandomIngredientData> datas)
     {
         foreach (var data in datas)
         {
-            if (data.Ingridient == type)
+            if (data.Ingredient == type)
                 return data;
         }
+
         return null;
     }
 
-    private List<IngridientType> TakeRandomlyIngridient(float p, IngridientType ingridientType)
+    private List<IngredientType> TakeRandomlyIngredient(float p, IngredientType IngredientType)
     {
         int amount = (int)(p - (p % 1));
         if ((p % 1) > Random.Range(0f, 1f))
@@ -107,13 +114,13 @@ public class RandomRecipeGenerator : MonoBehaviour
             amount++;
         }
 
-        List < IngridientType > ingridients= new();
+        List<IngredientType> Ingredients = new();
         for (int i = 0; i < amount; i++)
         {
-            ingridients.Add(ingridientType);
+            Ingredients.Add(IngredientType);
         }
 
-        return ingridients;
+        return Ingredients;
     }
 
 
@@ -121,6 +128,4 @@ public class RandomRecipeGenerator : MonoBehaviour
     {
         return Random.Range(0, description.randomRecipesDescription.Count);
     }
-
-    
-}
+} 
