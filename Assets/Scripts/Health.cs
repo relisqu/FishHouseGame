@@ -13,6 +13,7 @@ namespace DefaultNamespace
             currentHealth = MaxHealth;
         }
 
+        private bool isTakingDamage;
         public void TakeDamage(float damageAmount)
         {
             currentHealth -= damageAmount;
@@ -31,7 +32,6 @@ namespace DefaultNamespace
             }
         }
 
-        private bool isTakingDamage;
         private void Die()
         {
             transform.DOScale(Vector3.zero, 0.2f);

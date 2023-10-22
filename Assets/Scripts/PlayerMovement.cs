@@ -12,6 +12,10 @@ namespace DefaultNamespace
 
         [SerializeField] private float MovementSpeed;
         [SerializeField] private float RotationSpeed;
+        [SerializeField] private float DashForce;
+        
+        [SerializeField] private ParticleSystem DashParticles;
+        [SerializeField] private Rigidbody Rigidbody;
 
         [SerializeField] private Camera Camera;
 
@@ -24,7 +28,18 @@ namespace DefaultNamespace
         void Update()
         {
             var targetVector = new Vector3(_input.InputVector.x, 0, _input.InputVector.y);
-            var movementVector = MoveTowardTarget(targetVector);
+            var speed = MovementSpeed * Time.deltaTime;
+            
+            var movementVector = targetVector;
+            if (Input.GetKeyDown(KeyCode.Space) && targetVector.magnitude>0.01f)
+            {
+                Rigidbody.velocity= DashForce*targetVector.normalized;
+                DashParticles.Play();
+            }
+            else
+            {
+                movementVector = MoveTowardTarget(targetVector,speed);
+            }
 
             if (!RotateTowardMouse)
             {
@@ -49,12 +64,10 @@ namespace DefaultNamespace
             }
         }
 
-        private Vector3 MoveTowardTarget(Vector3 targetVector)
+        private Vector3 MoveTowardTarget(Vector3 targetVector, float speed)
         {
-            var speed = MovementSpeed * Time.deltaTime;
-
             targetVector = Quaternion.Euler(0, Camera.gameObject.transform.rotation.eulerAngles.y, 0) * targetVector;
-            var targetPosition = transform.position + targetVector * speed;
+            var targetPosition = transform.position + targetVector.normalized * speed;
             transform.position = targetPosition;
             return targetVector;
         }
