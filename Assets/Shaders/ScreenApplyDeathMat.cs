@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Shaders
 {
+    [ExecuteInEditMode]
     public class ScreenApplyDeathMat : MonoBehaviour
     {
         public Camera Cam;
@@ -14,7 +15,8 @@ namespace Shaders
         }
 
         private void OnRenderImage(RenderTexture src, RenderTexture dest)
-        {
+        { 
+           
             Graphics.Blit(src, dest, Mat);
         }
     }
