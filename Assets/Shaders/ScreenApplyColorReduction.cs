@@ -1,5 +1,7 @@
 ﻿using Sirenix.Utilities;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace Shaders
 {
@@ -9,7 +11,7 @@ namespace Shaders
         public Camera Cam;
         public Material Mat;
 
-        public Gradient colors;
+        public Texture2D colors;
 
 
         private void Start()
@@ -19,11 +21,11 @@ namespace Shaders
 
         private void OnRenderImage(RenderTexture src, RenderTexture dest)
         {
-            var colorsGradient = colors.colorKeys;
-            Color[] finalColors = new Color[colorsGradient.Length];
-            for (var index = 0; index < colorsGradient.Length; index++)
+            
+            Color[] finalColors = new Color[colors.width];
+            for (var index = 0; index < finalColors.Length; index++)
             {
-                finalColors[index] = colorsGradient[index].color;
+                finalColors[index] = colors.GetPixelBilinear((float)index/finalColors.Length,0);
             }
             Mat.SetColorArray("_Pallet", finalColors);
             Mat.SetInt("_PixelPalletCount", finalColors.Length);
