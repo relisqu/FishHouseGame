@@ -9,7 +9,7 @@ namespace DefaultNamespace
         {
             if (other.TryGetComponent(out Enemy enemy))
             {
-                enemy.GetComponent<Health>().TakeDamage(1);
+                enemy.GetComponent<Health>().TakeDamage(1, Health.DamageType.BySword);
             }
         }
 
@@ -17,7 +17,7 @@ namespace DefaultNamespace
         {
             if (collision.gameObject.TryGetComponent(out Enemy enemy))
             {
-                enemy.GetComponent<Health>().TakeDamage(1);
+                enemy.GetComponent<Health>().TakeDamage(1, Health.DamageType.BySword);
             }
         }
     }

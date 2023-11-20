@@ -10,9 +10,11 @@ namespace DefaultNamespace.EnemyAI
         private Vector3 targetPosition; // Destination where AI is currently moving towards
 
         private Vector3 spawnPosition;
+        private Health _health;
 
         private void Start()
         {
+            _health = GetComponent<Health>();
             spawnPosition = transform.position;
             // Set initial target position randomly
             targetPosition = GetRandomPosition();
@@ -20,6 +22,8 @@ namespace DefaultNamespace.EnemyAI
 
         private void Update()
         {
+            if (!_health.isAlive) return;
+
             // Check if AI has reached the target position
             if (ReachedTargetPosition())
             {
