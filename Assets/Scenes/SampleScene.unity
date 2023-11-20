@@ -128,6 +128,24 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6434036281660786434, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
   m_PrefabInstance: {fileID: 7750110776851701533}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &197439742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3142506600911320195, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+  m_PrefabInstance: {fileID: 7750110776851701533}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &197439745
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197439742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.75
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &469692740
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,13 +889,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8844581603324185745, guid: 003c3643cea40d440b1df881e3c3cec5, type: 3}
-      propertyPath: CurDropTable
-      value: 
-      objectReference: {fileID: 11400000, guid: a723661bdfb2a0a4697ce9ae6eb671f7, type: 2}
-    - target: {fileID: 8844581603324185745, guid: 003c3643cea40d440b1df881e3c3cec5, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8844581603324185745, guid: 003c3643cea40d440b1df881e3c3cec5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 003c3643cea40d440b1df881e3c3cec5, type: 3}
 --- !u!1001 &3666139976719350803
@@ -1005,6 +1019,38 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1292355226701183988, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: ItemsSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1292355226701183988, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: MaxCapacity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1292355226701183988, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: DistanceBetweenItems
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593660542594927473, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593660542594927473, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593660542594927473, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593660542594927473, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070860083407460456, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 81b8c558a3e08434e9283fd495f0951a, type: 2}
     - target: {fileID: 2201279383549008728, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1261,5 +1307,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4093995263899561571, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}

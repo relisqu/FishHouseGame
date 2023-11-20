@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.EnemyAI;
 using UnityEngine;
 
 namespace Drops
@@ -8,24 +9,24 @@ namespace Drops
     {
         // Start is called before the first frame update
 
-        [SerializeField] Dictionary<IngredientType, EntityDrop> dropPrefabs;
         [SerializeField] List<ItemContainer> containers;
+
         [SerializeField] ItemContainer trashBin;
-        [SerializeField] IngridientPrefabs ingridientPrefabs;
+
+        //[SerializeField] IngridientPrefabs ingridientPrefabs;
         public List<EntityDrop> avaibleOutDoorDrops;
 
 
         void Start()
         {
-            dropPrefabs = ingridientPrefabs.prefabs;
+            // dropPrefabs = ingridientPrefabs.prefabs;
         }
 
         // Update is called once per frame
         void Update()
         {
-
         }
-
+/*
         public void GenerateDrop(IngredientType ingredient, Transform position)
         {
             if (!dropPrefabs.ContainsKey(ingredient))
@@ -35,7 +36,7 @@ namespace Drops
             avaibleOutDoorDrops.Add(drop);
         }
 
-        private void SendDrop(EntityDrop drop)
+        private void SendDrop(Item drop)
         {
             foreach(ItemContainer container in containers)
             {
@@ -53,10 +54,10 @@ namespace Drops
             PlayerBagPack bagPack;
             if(other.gameObject.TryGetComponent<PlayerBagPack>(out bagPack))
             {
-                var items = bagPack.RemoveItems();
-                foreach (var item in items)
+                foreach (var item in bagPack.PopItems())
                     SendDrop(item);
             }
         }
+    }*/
     }
 }

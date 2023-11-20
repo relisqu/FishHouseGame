@@ -1,90 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.EnemyAI;
 using UnityEngine;
 
 
-
-namespace Drops {
+namespace Drops
+{
     //[RequireComponent(typeof(BoxCollider))]
     public class ItemContainer : MonoBehaviour
     {
         [SerializeField] List<Transform> containerPlaces;
-        [SerializeField] int capacity;
-        public IngredientType ingredientType;
+        [SerializeField] private int Capacity;
+        [SerializeField] private Ingredient IngredientType;
 
-        List<EntityDrop> entityDrops;
+        List<Item> _ingredients;
 
-        BoxCollider boxCollider;
+        Collider _collider;
+
         void Start()
         {
-            entityDrops = new();
-            return;
-            boxCollider = GetComponent<BoxCollider>();
-            boxCollider.isTrigger = true;
+            _ingredients = new();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
+        
         private void OnTriggerEnter(Collider other)
         {
-            return;
-            EntityDrop drop;
-
-            if (other.gameObject.TryGetComponent<EntityDrop>(out drop))
+            if (other.gameObject.TryGetComponent(out Item drop))
             {
-                if (drop.IngredientType == ingredientType)
-                    PlaceItem(drop);
+                if (drop.GetType() == IngredientType.IngredientItem.GetType())
+                    TryPlaceItem(drop);
             }
-            
         }
 
-        public bool PlaceItem(EntityDrop entity)
+        public bool TryPlaceItem(Item item)
         {
-            if (entityDrops.Contains(entity))
+            if (_ingredients.Contains(item))
                 return true;
 
-            if (entityDrops.Count >= capacity)
+            if (_ingredients.Count >= Capacity)
                 return false;
-            if (entityDrops.Count == 0)
-            {
-                entity.SetParent(nextPosition());
-                entity.MoveToParent();
-                entityDrops.Add(entity);
-                return true;
-            }
-            entity.SetParent(nextPosition());
-            entity.MoveToParent();
-            entityDrops.Add(entity);
+
+            item.SetParent(GetNextPosition());
+            item.transform.localPosition = Vector3.zero;
+            _ingredients.Add(item);
 
             return true;
         }
 
 
-        private Transform nextPosition()
+        private Transform GetNextPosition()
         {
-            if (entityDrops.Count < containerPlaces.Count)
+            if (_ingredients.Count < containerPlaces.Count)
             {
-                return containerPlaces[entityDrops.Count];
+                return containerPlaces[_ingredients.Count];
             }
 
-            return entityDrops[entityDrops.Count % containerPlaces.Count].upperPoint;
-            
+            return _ingredients[_ingredients.Count % containerPlaces.Count].transform;
         }
 
-        public EntityDrop Remove()
+        public Item Remove()
         {
-            var drop = entityDrops[entityDrops.Count - 1];
-            entityDrops.Remove(drop);
+            var drop = _ingredients[^1];
+            _ingredients.Remove(drop);
             return drop;
-
         }
-
-        
     }
-
-     
 }

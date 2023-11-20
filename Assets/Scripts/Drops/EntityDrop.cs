@@ -5,7 +5,6 @@ namespace Drops
     public class EntityDrop : MonoBehaviour
     {
         public Transform upperPoint;
-        public IngredientType IngredientType;
         private Transform _parent;
         [SerializeField] private float rotationSpeed;
 
@@ -30,14 +29,5 @@ namespace Drops
             return _parent != null;
         }
 
-        private void Update()
-        {
-            if (!HasParent()) Rotate();
-        }
-
-        private void Rotate()
-        {
-            transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed, Space.World);
-        }
     }
 }

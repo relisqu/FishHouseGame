@@ -7,9 +7,9 @@ public class Recipe : MonoBehaviour
     [SerializeField] GameObject IngridientCell;
     public RectTransform rectTransform;
     List<GameObject> ingridientCells;
-    public List<IngredientType> ingridientTypes;
-
-    public void CreateRecipe(List<IngredientType> ingridients, bool stack, RandomRecipeData description)
+    public List<Ingredient> ingridientTypes;
+/*
+    public void CreateRecipe(List<Ingredient> ingridients, bool stack, RandomRecipeData description)
     {
         ingridientTypes = ingridients;
         rectTransform = GetComponent<RectTransform>();
@@ -18,9 +18,9 @@ public class Recipe : MonoBehaviour
 
         if (stack)
         {
-            List<IngredientType> uniqueIngridients = new();
-            Dictionary<IngredientType, int> uniqueIngridientsWithAmount = new();
-            foreach (IngredientType ingridient in ingridients)
+            List<Ingredient> uniqueIngridients = new();
+            Dictionary<Ingredient, int> uniqueIngridientsWithAmount = new();
+            foreach (Ingredient ingridient in ingridients)
             {
                 if (uniqueIngridients.Contains(ingridient))
                 {
@@ -40,7 +40,7 @@ public class Recipe : MonoBehaviour
                 IngridientCell.GetComponent<RectTransform>().rect.height * uniqueIngridientsWithAmount.Count, 0);
 
 
-            foreach (KeyValuePair<IngredientType, int> kv in uniqueIngridientsWithAmount)
+            foreach (KeyValuePair<Ingredient, int> kv in uniqueIngridientsWithAmount)
             {
                 CreateIngridient(kv.Key, kv.Value);
             }
@@ -89,5 +89,5 @@ public class Recipe : MonoBehaviour
         }
 
         ingridientCells.Add(cell);
-    }
+    }*/
 }

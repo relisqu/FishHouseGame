@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.EnemyAI;
 using UnityEngine;
 
 
@@ -15,27 +16,19 @@ public class RecipesDescription: SerializedScriptableObject
 
 public class RecipeData
 {
-    [field: SerializeField] public string name { get; set; }
-    [field: SerializeField] public string description { get; set; }
+    [field: SerializeField] public string Name { get; set; }
+    [field: SerializeField] public string Description { get; set; }
     [field: SerializeField, Tooltip("In Seconds")] public float TimeToCook { get; set; }
-    [field: SerializeField] public List<IngredientData> Ingredients { get; set; }
+    [field: SerializeField] public List<Ingredient> Ingredients { get; set; }
 
     
 
 
 }
 
-public class IngredientData
+public class Ingredient
 {
-    [field: SerializeField] public IngredientType Ingredient { get; set; }
-    [field: SerializeField] public int Amount { get; set; }
-}
-
-public enum IngredientType {
-    None,
-    Fish,
-    Bun,
-    Rice,
-    FriedFish,
-
+    [field: SerializeField] public Item IngredientItem { get; set; }
+    [field: SerializeField] public int MinAmount { get; set; }
+    [field: SerializeField] public int MaxAmount { get; set; }
 }

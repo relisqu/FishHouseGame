@@ -1,24 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.EnemyAI;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace Drops
 {
     public class PlayerBagPack : MonoBehaviour
     {
+        [SerializeField] private float DistanceBetweenItems;
+        [SerializeField] private float ItemsSpeed;
+        [SerializeField] private int MaxCapacity = 3;
+        private List<Item> _drops;
 
-        [SerializeField] float distanceBetweenItems;
-        [SerializeField] float itemsSpeed;
-        List<EntityDrop> entityDrops;
-        
 
-        BoxCollider boxCollider;
+        Collider boxCollider;
 
 
         void Start()
         {
-            entityDrops = new();
-            boxCollider = GetComponent<BoxCollider>();
+            _drops = new();
+            boxCollider = GetComponent<Collider>();
             boxCollider.isTrigger = true;
         }
 
@@ -30,60 +32,48 @@ namespace Drops
 
         private void OnTriggerEnter(Collider other)
         {
-            EntityDrop drop;
-
-            if (other.gameObject.TryGetComponent<EntityDrop>(out drop))
+            if (other.gameObject.TryGetComponent(out Item item) && _drops.Count < MaxCapacity)
             {
-                PlaceItem(drop);
+                PlaceItem(item);
             }
-
         }
 
-        public List<EntityDrop> RemoveItems()
+        public List<Item> PopItems()
         {
-            List<EntityDrop> newList = new(entityDrops);
-
-            entityDrops = new();
-            return newList;
+            var list = new List<Item>(_drops);
+            _drops.Clear();
+            return list;
         }
 
-        private void PlaceItem(EntityDrop entity)
+        private void PlaceItem(Item item)
         {
-            if (entityDrops.Contains(entity))
+            if (_drops.Contains(item))
                 return;
 
-            if (entityDrops.Count == 0)
-            {
-                entityDrops.Add(entity);
-                return;
-            }
-            entityDrops.Add(entity);
+            _drops.Add(item);
+            item.SetParent(this);
         }
 
         private void MoveItems()
         {
-            if (entityDrops.Count == 0)
+            if (_drops.Count == 0)
                 return;
 
-            for (int i = 0;i < entityDrops.Count; i ++)
+            var direction1 = transform.position - _drops[0].transform.position;
+            if (direction1.sqrMagnitude >= DistanceBetweenItems * DistanceBetweenItems)
             {
-                if(i == 0)
-                {
-                    var direction1 = transform.position - entityDrops[0].transform.position;
-                    if (direction1.sqrMagnitude < distanceBetweenItems * distanceBetweenItems)
-                        continue;
+                var movDir = direction1.normalized * (ItemsSpeed * Time.deltaTime);
+                _drops[0].transform.Translate(movDir, Space.World);
+            }
 
-                    entityDrops[i].transform.Translate(direction1.normalized * itemsSpeed * Time.deltaTime, Space.World);
-                    continue;
-                }
-
-                var direction = entityDrops[i - 1].transform.position - entityDrops[i].transform.position;
-                if (direction.sqrMagnitude < distanceBetweenItems * distanceBetweenItems)
+            for (int i = 1; i < _drops.Count; i++)
+            {
+                var direction = _drops[i - 1].transform.position - _drops[i].transform.position;
+                if (direction.sqrMagnitude < DistanceBetweenItems * DistanceBetweenItems)
                     continue;
 
-                entityDrops[i].transform.Translate(direction.normalized * itemsSpeed * Time.deltaTime, Space.World);
-                continue;
-
+                var movDir = direction.normalized * (ItemsSpeed * Time.deltaTime);
+                _drops[i].transform.Translate(movDir, Space.World);
             }
         }
     }
