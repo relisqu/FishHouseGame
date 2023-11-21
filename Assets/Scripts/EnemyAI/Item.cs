@@ -16,6 +16,7 @@ namespace DefaultNamespace.EnemyAI
         [SerializeField] private float IdleScaleSpeed;
         [Range(0, 1)] [SerializeField] private float IdleScaleAmplitude;
         private Vector3 _startPosition;
+        private Vector3 _startScale;
 
         private Transform _parent;
 
@@ -29,6 +30,7 @@ namespace DefaultNamespace.EnemyAI
         public void SetStartPosition(Vector3 position)
         {
             _startPosition = position;
+            _startScale = transform.localScale;
             Debug.Log("Start tween");
             if(IsPicked) return;
             _scaleTweenerCore = transform.DOScale(transform.localScale * (1 - IdleScaleAmplitude), IdleScaleSpeed)
@@ -49,9 +51,8 @@ namespace DefaultNamespace.EnemyAI
         {
             IsPicked = true;
             _scaleTweenerCore.Kill();
+            transform.localScale = _startScale;
             Debug.Log("Kill tween");
-            Debug.Log(DOTween.Kill(this));
-            DOTween.Kill(_scaleTweenerCore);
 
         }
 
