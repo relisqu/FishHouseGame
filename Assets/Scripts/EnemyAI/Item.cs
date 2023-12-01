@@ -19,6 +19,9 @@ namespace DefaultNamespace.EnemyAI
         private Vector3 _startScale;
 
         private Transform _parent;
+        private State currentState =State.Idle;
+
+        public enum State { Idle, Picked, Stored }
 
         void Start()
         {
@@ -31,15 +34,16 @@ namespace DefaultNamespace.EnemyAI
         {
             _startPosition = position;
             _startScale = transform.localScale;
-            Debug.Log("Start tween");
-            if(IsPicked) return;
+            if(currentState!= State.Idle) return;
             _scaleTweenerCore = transform.DOScale(transform.localScale * (1 - IdleScaleAmplitude), IdleScaleSpeed)
                 .SetLoops(-1, LoopType.Yoyo);
         }
 
         private void Update()
         {
-            if (!IsPicked)
+            
+
+            if (currentState== State.Idle)
             {
                 var yDelta = Mathf.Sin(Time.time * IdleMovementSpeed) * Time.deltaTime * IdleMovementAmplitude;
                 transform.position += Vector3.up * yDelta;
@@ -49,15 +53,20 @@ namespace DefaultNamespace.EnemyAI
 
         public void SetParent(PlayerBagPack playerBagPack)
         {
-            IsPicked = true;
+            currentState = State.Picked;
             _scaleTweenerCore.Kill();
             transform.localScale = _startScale;
-            Debug.Log("Kill tween");
 
+        }
+
+        public State GetState()
+        {
+            return currentState;
         }
 
         public void SetParent(Transform parentTransform)
         {
+            currentState = State.Stored;
             _parent = parentTransform;
             transform.parent = parentTransform;
         }

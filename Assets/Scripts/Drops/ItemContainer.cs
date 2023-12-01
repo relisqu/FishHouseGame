@@ -11,7 +11,7 @@ namespace Drops
     {
         [SerializeField] List<Transform> containerPlaces;
         [SerializeField] private int Capacity;
-        [SerializeField] private Ingredient IngredientType;
+        [SerializeField] private Item IngredientType;
 
         List<Item> _ingredients;
 
@@ -24,9 +24,10 @@ namespace Drops
         
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log(other.gameObject.TryGetComponent(out Item _));
             if (other.gameObject.TryGetComponent(out Item drop))
             {
-                if (drop.GetType() == IngredientType.IngredientItem.GetType())
+                if (drop.name.StartsWith(IngredientType.name))
                     TryPlaceItem(drop);
             }
         }
@@ -42,7 +43,7 @@ namespace Drops
             item.SetParent(GetNextPosition());
             item.transform.localPosition = Vector3.zero;
             _ingredients.Add(item);
-
+            PlayerBagPack.Instance.RemoveItem(item);
             return true;
         }
 

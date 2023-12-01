@@ -13,12 +13,13 @@ namespace Drops
         [SerializeField] private int MaxCapacity = 3;
         private List<Item> _drops;
 
-
+        public static PlayerBagPack Instance;
         Collider boxCollider;
 
 
         void Start()
         {
+            Instance = this;
             _drops = new();
             boxCollider = GetComponent<Collider>();
             boxCollider.isTrigger = true;
@@ -32,7 +33,9 @@ namespace Drops
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.TryGetComponent(out Item item) && _drops.Count < MaxCapacity)
+            Debug.Log(other.gameObject.TryGetComponent(out Item _));
+            if (other.gameObject.TryGetComponent(out Item item) && item.GetState() == Item.State.Idle &&
+                _drops.Count < MaxCapacity)
             {
                 PlaceItem(item);
             }
@@ -75,6 +78,11 @@ namespace Drops
                 var movDir = direction.normalized * (ItemsSpeed * Time.deltaTime);
                 _drops[i].transform.Translate(movDir, Space.World);
             }
+        }
+
+        public void RemoveItem(Item item)
+        {
+            _drops.Remove(item);
         }
     }
 }
