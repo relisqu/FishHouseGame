@@ -33,7 +33,6 @@ namespace Drops
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.gameObject.TryGetComponent(out Item _));
             if (other.gameObject.TryGetComponent(out Item item) && item.GetState() == Item.State.Idle &&
                 _drops.Count < MaxCapacity)
             {
