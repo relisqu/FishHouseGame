@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ namespace DefaultNamespace.UI
         [SerializeField] private RecipesDescription Recipes;
         [SerializeField] private Recipe RecipePrefab;
         private List<Recipe> _currentRecipes= new List<Recipe>();
+        [SerializeField] public Transform RecipesTransform;
+
+        
         void Start()
         {
             StartCoroutine(GenerateRecipes());
@@ -26,8 +30,7 @@ namespace DefaultNamespace.UI
             {
                 curNumRecipes++;
                 var recipe = Recipes.GetRandomRecipe();
-                var data = Instantiate(RecipePrefab);
-                data.gameObject.SetActive(false);
+                var data = Instantiate(RecipePrefab,RecipesTransform);
                 _currentRecipes.Add(data);
                 data.SetRecipeData(recipe, DifficultyCoeff);
                 

@@ -20,6 +20,7 @@ namespace DefaultNamespace.EnemyAI
 
         private Transform _parent;
         private State currentState =State.Idle;
+        public Sprite IngredientIcon;
 
         public enum State { Idle, Picked, Stored }
 

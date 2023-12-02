@@ -116,6 +116,7 @@ MonoBehaviour:
   IdleMovementAmplitude: 0.5
   IdleScaleSpeed: 0.7
   IdleScaleAmplitude: 0.5
+  IngredientIcon: {fileID: -467806029, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
 --- !u!54 &8007617085860691614
 Rigidbody:
   m_ObjectHideFlags: 0
