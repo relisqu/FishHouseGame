@@ -22,14 +22,18 @@ namespace Drops
             _ingredients = new();
         }
         
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
-            Debug.Log(other.gameObject.TryGetComponent(out Item _));
-            if (other.gameObject.TryGetComponent(out Item drop))
+            if (Input.GetKey(KeyCode.E))
             {
-                if (drop.name.StartsWith(IngredientType.name))
-                    TryPlaceItem(drop);
+                if (other.gameObject.TryGetComponent(out Item drop) )
+                {
+                    if (drop.name.StartsWith(IngredientType.name))
+                        TryPlaceItem(drop);
+                }
             }
+
+            
         }
 
         public bool TryPlaceItem(Item item)
