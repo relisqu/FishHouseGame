@@ -54,7 +54,7 @@ public class Recipe : MonoBehaviour
         }
 
         Complete();
-        CameraShake.Instance.ShakeCamera(1f,0.2f);
+        CameraShake.Instance.ShakeCamera(3.5f,0.2f);
         yield return null;
     }
 

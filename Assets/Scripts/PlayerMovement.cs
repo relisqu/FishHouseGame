@@ -18,6 +18,12 @@ namespace DefaultNamespace
         [SerializeField] private Rigidbody Rigidbody;
 
         [SerializeField] private Camera Camera;
+        private Animator _animator;
+
+        private void Start()
+        {
+            _animator = GetComponent<Animator>();
+        }
 
         private void Awake()
         {
@@ -30,7 +36,8 @@ namespace DefaultNamespace
             var targetVector = new Vector3(_input.InputVector.x, 0, _input.InputVector.y);
             var speed = MovementSpeed * Time.deltaTime;
             
-            var movementVector = targetVector;
+            var movementVector = targetVector; 
+            _animator.SetBool("IsRunning", targetVector.magnitude>0.01f);
             if (Input.GetKeyDown(KeyCode.Space) && targetVector.magnitude>0.01f)
             {
                 Rigidbody.velocity= DashForce*targetVector.normalized;
