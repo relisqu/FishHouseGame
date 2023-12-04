@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace.EnemyAI;
@@ -16,24 +17,53 @@ namespace Drops
         List<Item> _ingredients;
 
         Collider _collider;
+        private Interactable _text;
 
         void Start()
         {
+            _text = GetComponentInChildren<Interactable>();
             _ingredients = new();
         }
-        
+
+        private void Update()
+        {
+            if (Capacity >= _ingredients.Count)
+            {
+                if ( _ingredients.Count > 0)
+                {
+                    _text.SetText("Press E to stack ingredients\n Press F to get ingredients");
+                }
+                else
+                {
+                    _text.SetText("Press E to stack ingredients");
+                }
+            }
+            else
+            {
+                _text.SetText("Press F to get ingredients");
+            }
+
+        }
+
         private void OnTriggerStay(Collider other)
         {
             if (Input.GetKey(KeyCode.E))
             {
-                if (other.gameObject.TryGetComponent(out Item drop) )
+                if (other.gameObject.TryGetComponent(out PlayerBagPack pack))
                 {
-                    if (drop.name.StartsWith(IngredientType.name))
-                        TryPlaceItem(drop);
+                    var item = pack.HasItems(IngredientType.name);
+                    if (item)
+                        TryPlaceItem(item);
                 }
             }
 
-            
+            if (Input.GetKey(KeyCode.F) && _ingredients.Count > 0)
+            {
+                if (other.gameObject.TryGetComponent(out PlayerBagPack pack) && pack.HasSpace())
+                {
+                    pack.PlaceItem(Remove());
+                }
+            }
         }
 
         public bool TryPlaceItem(Item item)

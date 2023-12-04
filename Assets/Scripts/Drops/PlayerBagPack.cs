@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace.EnemyAI;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -34,7 +35,7 @@ namespace Drops
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.TryGetComponent(out Item item) && item.GetState() == Item.State.Idle &&
-                _drops.Count < MaxCapacity)
+                HasSpace())
             {
                 PlaceItem(item);
             }
@@ -47,7 +48,7 @@ namespace Drops
             return list;
         }
 
-        private void PlaceItem(Item item)
+        public void PlaceItem(Item item)
         {
             if (_drops.Contains(item))
                 return;
@@ -79,9 +80,19 @@ namespace Drops
             }
         }
 
+        public bool HasSpace()
+        {
+            return _drops.Count < MaxCapacity;
+        }
+
         public void RemoveItem(Item item)
         {
             _drops.Remove(item);
+        }
+
+        public Item HasItems(string ingredientTypeName)
+        {
+            return _drops.FirstOrDefault(it => it.name.StartsWith(ingredientTypeName));
         }
     }
 }
