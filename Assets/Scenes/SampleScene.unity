@@ -961,10 +961,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 364170568337499427, guid: 5da348a0bdac61e44bbf0b91597b20b4, type: 3}
-      propertyPath: m_Radius
-      value: 1.7
-      objectReference: {fileID: 0}
     - target: {fileID: 364170568337499433, guid: 5da348a0bdac61e44bbf0b91597b20b4, type: 3}
       propertyPath: m_Name
       value: RawSalmonContainer Variant

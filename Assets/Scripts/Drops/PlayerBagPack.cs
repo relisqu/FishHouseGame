@@ -54,6 +54,7 @@ namespace Drops
                 return;
 
             _drops.Add(item);
+            item.transform.parent = null;
             item.SetParent(this);
         }
 

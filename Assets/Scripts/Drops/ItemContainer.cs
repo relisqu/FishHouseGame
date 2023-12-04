@@ -42,25 +42,31 @@ namespace Drops
             {
                 _text.SetText("Press F to get ingredients");
             }
-
+        
+            _triggerTimer -= Time.deltaTime;
         }
 
+        private float _triggerTimer;
         private void OnTriggerStay(Collider other)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E) && _triggerTimer<=0f)
             {
                 if (other.gameObject.TryGetComponent(out PlayerBagPack pack))
                 {
                     var item = pack.HasItems(IngredientType.name);
                     if (item)
+                    {
+                        _triggerTimer = 0.3f;
                         TryPlaceItem(item);
+                    }
                 }
             }
 
-            if (Input.GetKey(KeyCode.F) && _ingredients.Count > 0)
+            if (Input.GetKey(KeyCode.F) && _ingredients.Count > 0 && _triggerTimer<=0f)
             {
                 if (other.gameObject.TryGetComponent(out PlayerBagPack pack) && pack.HasSpace())
                 {
+                    _triggerTimer = 0.3f;
                     pack.PlaceItem(Remove());
                 }
             }
