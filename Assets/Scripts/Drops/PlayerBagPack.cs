@@ -56,6 +56,7 @@ namespace Drops
             _drops.Add(item);
             item.transform.parent = null;
             item.SetParent(this);
+            GetComponent<AudioSource>().Play();
         }
 
         private void MoveItems()
@@ -89,6 +90,7 @@ namespace Drops
         public void RemoveItem(Item item)
         {
             _drops.Remove(item);
+            GetComponent<AudioSource>().Play();
         }
 
         public Item HasItems(string ingredientTypeName)

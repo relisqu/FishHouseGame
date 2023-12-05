@@ -20,6 +20,7 @@ namespace DefaultNamespace
         [SerializeField] private Camera Camera;
 
         [SerializeField] LayerMask layerMask;
+        [SerializeField] AudioClip dashSound;
 
         private Animator _animator;
 
@@ -36,7 +37,7 @@ namespace DefaultNamespace
         // Update is called once per frame
         void Update()
         {
-            var targetVector = new Vector3(_input.InputVector.x, 0, _input.InputVector.y);
+            var targetVector = new Vector3(_input.InputVector.x, Rigidbody.velocity.y, _input.InputVector.y);
             var speed = MovementSpeed * Time.deltaTime;
             
             var movementVector = targetVector; 
@@ -45,6 +46,7 @@ namespace DefaultNamespace
             {
                 Rigidbody.velocity= DashForce*targetVector.normalized;
                 DashParticles.Play();
+                GetComponent<AudioSource>().PlayOneShot(dashSound);
             }
             else
             {

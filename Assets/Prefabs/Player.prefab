@@ -3844,7 +3844,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 23
+      m_Bits: 1559
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -10158,6 +10158,10 @@ MonoBehaviour:
   DashParticles: {fileID: 6434036281660786434}
   Rigidbody: {fileID: 7750110777205374111}
   Camera: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  dashSound: {fileID: 8300000, guid: 2ea76cdf074c6714c9d168e25c7e4d79, type: 3}
 --- !u!114 &7750110777205374106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10204,7 +10208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainAttackDelay: 0.2
   OffAttackDelay: 0.15
-  AttackSound: {fileID: 8300000, guid: fa959dc2593e23d4782865f8a88caac0, type: 3}
+  AttackSound: {fileID: 8300000, guid: 48ec3e2a2e7637c47a864e4cd341e589, type: 3}
   FireParticles: {fileID: 164442004}
 --- !u!82 &7215650050799144619
 AudioSource:
