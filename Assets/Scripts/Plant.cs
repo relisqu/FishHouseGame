@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using DefaultNamespace.EnemyAI;
+using Drops;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace DefaultNamespace
 {
@@ -13,6 +16,12 @@ namespace DefaultNamespace
 
         private void Start()
         {
+            ResetGrowTimer();
+            
+            foreach (var r in Renderers)
+            {
+                r.sprite = GrowSprites[_currentPhase];
+            }
         }
 
         private void Update()
@@ -48,13 +57,19 @@ namespace DefaultNamespace
         {
             if (other.TryGetComponent(out Sword sword))
             {
+                if (GrowSprites.Count - _currentPhase <= 2)
+                {
+                    var currentAmount = Random.Range(1,2*(3- GrowSprites.Count + _currentPhase));
+                    GetComponent<ItemDrop>().DropItem(Health.DamageType.BySword,currentAmount);
+                }
                 ResetGrowth();
+
             }
         }
 
         public void Grow()
         {
-            if (_currentPhase < GrowSprites.Count)
+            if (_currentPhase < GrowSprites.Count-1)
             {
                 _currentPhase++;
             }
@@ -63,6 +78,8 @@ namespace DefaultNamespace
             {
                 r.sprite = GrowSprites[_currentPhase];
             }
+
+            ResetGrowTimer();
         }
 
         public void ResetGrowTimer()
