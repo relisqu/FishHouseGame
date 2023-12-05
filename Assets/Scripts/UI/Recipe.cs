@@ -86,4 +86,15 @@ public class Recipe : MonoBehaviour
         data = recipe;
         StartCoroutine(StartTimer());
     }
+
+    public RecipeData GetData()
+    {
+        return data;
+    }
+
+    public void SetCompleted()
+    {
+        StopAllCoroutines();
+        Complete();
+    }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7357982102425052044}
   - component: {fileID: 7397482346083391610}
   - component: {fileID: 4505249095184305803}
+  - component: {fileID: 955196208}
   m_Layer: 0
   m_Name: sushi-shrimp
   m_TagString: Untagged
@@ -27,9 +28,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7370421265529995122}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 15.05}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,7 +96,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7370421265529995122}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.12398258, y: 0.050161634, z: 0.14934927}
@@ -112,3 +113,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551645e362314828b2319147baef074c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 1
+--- !u!114 &955196208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7370421265529995122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d295d5ab5d34e0aa9900265b138b789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IdleRotationSpeed: 2
+  IdleMovementSpeed: 0
+  IdleMovementAmplitude: 0
+  IdleScaleSpeed: 1
+  IdleScaleAmplitude: 0.092
+  IngredientIcon: {fileID: -591436537, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
+  CurItemType: 4

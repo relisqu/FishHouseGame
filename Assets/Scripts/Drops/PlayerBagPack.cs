@@ -90,12 +90,18 @@ namespace Drops
         public void RemoveItem(Item item)
         {
             _drops.Remove(item);
+            item.SetState(Item.State.Idle);
             GetComponent<AudioSource>().Play();
         }
 
         public Item HasItems(string ingredientTypeName)
         {
             return _drops.FirstOrDefault(it => it.name.StartsWith(ingredientTypeName));
+        }
+
+        public Item HasItems(ItemType type)
+        {
+            return _drops.FirstOrDefault(it => it.CurItemType == type);
         }
 
         public Item GetItem(int i)

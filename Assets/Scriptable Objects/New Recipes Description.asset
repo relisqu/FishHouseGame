@@ -19,7 +19,9 @@ MonoBehaviour:
     - {fileID: 3666139977223832755, guid: 26b762317ba2ee447ab694ab8992612c, type: 3}
     - {fileID: 7350202073320763442, guid: 99c0edb7c7692474a82fcf47c3fe161a, type: 3}
     - {fileID: -1825444654, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
+    - {fileID: 0}
     - {fileID: -1029882368, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -89,8 +91,8 @@ MonoBehaviour:
       Entry: 10
       Data: 2
     - Name: <Meal>k__BackingField
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -135,10 +137,10 @@ MonoBehaviour:
       Data: 
     - Name: <MealIcon>k__BackingField
       Entry: 10
-      Data: 3
+      Data: 4
     - Name: <Meal>k__BackingField
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 5
     - Name: 
       Entry: 8
       Data: 

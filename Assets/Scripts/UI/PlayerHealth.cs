@@ -36,18 +36,17 @@ namespace DefaultNamespace.UI
             Health -= 1;
             if (Health >= 0)
             {
-                
                 HeartObjects[Health].sprite = DamagedHeart;
             }
             else
             {
                 Lose();
             }
-
         }
 
         public void Lose()
         {
+            GameManager.Instance.Lose();
         }
     }
 }

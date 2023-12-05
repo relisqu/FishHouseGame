@@ -10,7 +10,8 @@ public enum ItemType
     Rice,
     FSalmon,
     Salmon,
-    Wheat
+    Wheat,
+    Meal
 }
 
 namespace DefaultNamespace.EnemyAI
@@ -35,6 +36,11 @@ namespace DefaultNamespace.EnemyAI
             Idle,
             Picked,
             Stored
+        }
+
+        private void Awake()
+        {
+            _startScale = transform.localScale;
         }
 
         public ItemType CurItemType;
@@ -83,6 +89,11 @@ namespace DefaultNamespace.EnemyAI
             currentState = State.Stored;
             _parent = parentTransform;
             transform.parent = parentTransform;
+        }
+
+        public void SetState(State s)
+        {
+            currentState = s;
         }
     }
 }
