@@ -5,6 +5,14 @@ using DG.Tweening.Plugins.Options;
 using Drops;
 using UnityEngine;
 
+public enum ItemType
+{
+    Rice,
+    FSalmon,
+    Salmon,
+    Wheat
+}
+
 namespace DefaultNamespace.EnemyAI
 {
     public class Item : MonoBehaviour
@@ -19,16 +27,18 @@ namespace DefaultNamespace.EnemyAI
         private Vector3 _startScale;
 
         private Transform _parent;
-        private State currentState =State.Idle;
+        private State currentState = State.Idle;
         public Sprite IngredientIcon;
 
-        public enum State { Idle, Picked, Stored }
+        public enum State
+        {
+            Idle,
+            Picked,
+            Stored
+        }
 
         public ItemType CurItemType;
-        public enum ItemType
-        {
-            Rice, FSalmon, Salmon, Wheat
-        }
+
 
         void Start()
         {
@@ -41,16 +51,14 @@ namespace DefaultNamespace.EnemyAI
         {
             _startPosition = position;
             _startScale = transform.localScale;
-            if(currentState!= State.Idle) return;
+            if (currentState != State.Idle) return;
             _scaleTweenerCore = transform.DOScale(transform.localScale * (1 - IdleScaleAmplitude), IdleScaleSpeed)
                 .SetLoops(-1, LoopType.Yoyo);
         }
 
         private void Update()
         {
-            
-
-            if (currentState== State.Idle)
+            if (currentState == State.Idle)
             {
                 var yDelta = Mathf.Sin(Time.time * IdleMovementSpeed) * Time.deltaTime * IdleMovementAmplitude;
                 transform.position += Vector3.up * yDelta;
@@ -63,7 +71,6 @@ namespace DefaultNamespace.EnemyAI
             currentState = State.Picked;
             _scaleTweenerCore.Kill();
             transform.localScale = _startScale;
-
         }
 
         public State GetState()

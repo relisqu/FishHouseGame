@@ -98,7 +98,9 @@ namespace Drops
 
         public Item GetItem(int i)
         {
-            return _drops[i];
+            if (i < _drops.Count)
+                return _drops[i];
+            return null;
         }
     }
 }

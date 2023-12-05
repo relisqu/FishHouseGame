@@ -13,9 +13,11 @@ namespace DefaultNamespace.EnemyAI
 
         private Vector3 spawnPosition;
         private Health _health;
+        private AudioSource _audioSource;
 
         private void Start()
         {
+            _audioSource = GetComponent<AudioSource>();
             StartCoroutine(Sound());
             _health = GetComponent<Health>();
             spawnPosition = transform.position;
@@ -74,8 +76,8 @@ namespace DefaultNamespace.EnemyAI
         IEnumerator Sound()
         {
             yield return new WaitForSeconds(Random.Range(0f, 2f));
-            GetComponent<AudioSource>().clip = wanderingSound;
-            GetComponent<AudioSource>().Play();
+            _audioSource.clip = wanderingSound;
+            _audioSource.Play();
         }
     }
 }

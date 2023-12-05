@@ -12,33 +12,46 @@ namespace Drops
 {
     public class CookingPot : MonoBehaviour
     {
-        private List<Item> currentDrops;
-        public List<CookingRecipe> Recipes;
+        private List<Item> currentDrops = new List<Item>();
+        public List<CookingRecipe> Recipes = new List<CookingRecipe>();
         public Slider TimerSlider;
 
 
         private float _triggerTimer;
 
+        private void Start()
+        {
+            TimerSlider.gameObject.SetActive(false);
+        }
+
         private void Update()
         {
+            if (_triggerTimer > 0f)
+            {
+                _triggerTimer -= Time.deltaTime;
+            }
         }
 
         private void OnTriggerStay(Collider other)
         {
+            if (isCooking) return;
             if (Input.GetKey(KeyCode.E) && _triggerTimer <= 0f)
             {
                 if (other.gameObject.TryGetComponent(out PlayerBagPack pack))
                 {
                     var item = pack.GetItem(0);
+                    Debug.Log(item);
                     if (item != null)
                     {
+                        pack.RemoveItem(item);
+                        item.gameObject.SetActive(false);
                         currentDrops.Add(item);
                         _triggerTimer = 0.3f;
                     }
                 }
             }
 
-            if (Input.GetKeyDown("F"))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 TryStartCooking();
             }
@@ -54,7 +67,10 @@ namespace Drops
 
         private void OnTriggerExit(Collider other)
         {
-            StopCooking();
+            if (isCooking && other.gameObject.TryGetComponent(out PlayerBagPack pack))
+            {
+                StopCooking();
+            }
         }
 
         bool isCooking;
@@ -67,26 +83,27 @@ namespace Drops
             }
         }
 
-        public bool CheckRecipes(CookingRecipe recipe)
+        public bool CheckIfRecipeOk(CookingRecipe recipe)
         {
             var list = new List<Item>(currentDrops);
-            var hasIngredients = false;
+
             foreach (var ingredient in recipe.Ingredients)
             {
+                var foundItem = false;
                 foreach (var curItem in list)
                 {
-                    if (curItem.name.StartsWith(ingredient.name))
+                    if (curItem.CurItemType == ingredient)
                     {
+                        foundItem = true;
                         list.Remove(curItem);
-                        hasIngredients = true;
-                    }
-                    else
-                    {
+                        break;
                     }
                 }
 
-                if (!hasIngredients) return false;
+                if (!foundItem) return false;
             }
+
+            return true;
         }
 
         private void TryStartCooking()
@@ -94,15 +111,7 @@ namespace Drops
             foreach (var rec in Recipes)
             {
                 bool hasIngredients = true;
-                foreach (var ingredient in currentDrops)
-                {
-                    if (!rec.Ingredients.Contains(ingredient))
-                    {
-                        hasIngredients = false;
-                    }
-                }
-
-                if (!hasIngredients) continue;
+                if (!CheckIfRecipeOk(rec)) continue;
                 CurrentRecipe = rec;
                 StartCoroutine(StartCooking(rec, rec.TimeToCook));
                 break;
@@ -128,7 +137,8 @@ namespace Drops
                 isCooking = true;
                 timer -= Time.deltaTime;
                 TimeLeftToCook = timer;
-                TimerSlider.value = 1 - (rec.TimeToCook / TimeLeftToCook);
+                TimerSlider.value = 1 - TimeLeftToCook / rec.TimeToCook;
+                yield return null;
             }
 
             TimerSlider.gameObject.SetActive(false);
@@ -140,6 +150,16 @@ namespace Drops
         private void GenerateMeal(Meal meal)
         {
             Instantiate(meal);
+            isCooking = false;
+
+            foreach (var item in currentDrops)
+            {
+                Destroy(item);
+            }
+
+            CurrentRecipe = null;
+            TimeLeftToCook = 0;
+            _triggerTimer = 0;
         }
 
         private void FailRecipe()
