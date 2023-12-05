@@ -10,12 +10,15 @@ namespace DefaultNamespace
     {
         [SerializeField]private float MainAttackDelay;
         [SerializeField]private float OffAttackDelay;
-        
+        [SerializeField]private AudioClip AttackSound;
+
+        private AudioSource _audioSource;
         private Animator _animator;
         private bool _isAttacking;
         [SerializeField] private ParticleSystem FireParticles;
         private void Start()
         {
+            _audioSource = GetComponent<AudioSource>();
             _animator = GetComponent<Animator>();
         }
 
@@ -36,6 +39,7 @@ namespace DefaultNamespace
 
         public IEnumerator StartMainAttack()
         {
+            _audioSource.PlayOneShot(AttackSound);
             _isAttacking = true;
             _animator.SetTrigger("Attack");
             yield return new WaitForSeconds(MainAttackDelay);
