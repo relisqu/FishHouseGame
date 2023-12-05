@@ -1,5 +1,6 @@
 ﻿using System;
 using DefaultNamespace;
+using Drops;
 using UnityEngine;
 
 public class Fire : MonoBehaviour
@@ -10,5 +11,11 @@ public class Fire : MonoBehaviour
         {
             enemy.GetComponent<Health>().TakeDamage(0.1f, Health.DamageType.ByFire);
         }
+
+        if (other.TryGetComponent(out Plant drop))
+        {
+            drop.ResetGrowth();
+        }
     }
+
 }
