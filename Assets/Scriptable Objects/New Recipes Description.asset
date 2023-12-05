@@ -57,10 +57,10 @@ MonoBehaviour:
       Data: 0
     - Name: <MinAmount>k__BackingField
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: <MaxAmount>k__BackingField
       Entry: 3
-      Data: 3
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -75,7 +75,7 @@ MonoBehaviour:
       Data: 1
     - Name: <MaxAmount>k__BackingField
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -88,6 +88,9 @@ MonoBehaviour:
     - Name: <MealIcon>k__BackingField
       Entry: 10
       Data: 2
+    - Name: <Meal>k__BackingField
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -117,10 +120,10 @@ MonoBehaviour:
       Data: 0
     - Name: <MinAmount>k__BackingField
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: <MaxAmount>k__BackingField
       Entry: 3
-      Data: 4
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -133,6 +136,9 @@ MonoBehaviour:
     - Name: <MealIcon>k__BackingField
       Entry: 10
       Data: 3
+    - Name: <Meal>k__BackingField
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 

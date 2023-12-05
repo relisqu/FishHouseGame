@@ -114,7 +114,7 @@ namespace Drops
                 if (!CheckIfRecipeOk(rec)) continue;
                 CurrentRecipe = rec;
                 StartCoroutine(StartCooking(rec, rec.TimeToCook));
-                break;
+                return;
             }
 
             FailRecipe();

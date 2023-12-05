@@ -9,6 +9,11 @@ namespace DefaultNamespace.Additional
         public static CameraShake Instance;
         [SerializeField] private CinemachineVirtualCamera Camera;
 
+        private void Start()
+        {
+            _perlin = Camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        }
+
         private void Awake()
         {
             if (Instance == null)
@@ -22,11 +27,11 @@ namespace DefaultNamespace.Additional
         }
 
         private float timer;
+        private CinemachineBasicMultiChannelPerlin _perlin;
 
         public void ShakeCamera(float intensity, float time)
         {
-            var perlin = Camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            perlin.m_AmplitudeGain = intensity;
+            _perlin.m_AmplitudeGain = intensity;
             timer = time;
         }
 
@@ -36,8 +41,7 @@ namespace DefaultNamespace.Additional
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                var perlin = Camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-                perlin.m_AmplitudeGain = 0;
+                _perlin.m_AmplitudeGain = 0;
             }
         }
     }
