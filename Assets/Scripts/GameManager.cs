@@ -6,6 +6,12 @@ namespace DefaultNamespace
     {
         public static GameManager Instance;
 
+        private void Start()
+        {
+            if (Instance == null)
+                Instance = this;
+        }
+
         public enum GameMode
         {
             Infinite, LevelBased

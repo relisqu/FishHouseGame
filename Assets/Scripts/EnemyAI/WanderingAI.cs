@@ -29,6 +29,7 @@ namespace DefaultNamespace.EnemyAI
         {
             if (!_health.isAlive) return;
 
+            return;
             // Check if AI has reached the target position
             if (ReachedTargetPosition())
             {

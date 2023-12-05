@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1495eaf98c2e42368aae87d995912ae5, type: 3}
   m_Name: RiceBowl
   m_EditorClassIdentifier: 
-  Ingredients: 020000000000000000000000
+  Ingredients: 00000000
   TimeToCook: 10
-  ResultingMeal: {fileID: 4505249095184305803, guid: a0d0fd0480e749c42a11f9b3a4fd1c54, type: 3}
+  ResultingMeal: {fileID: 2256482775666396299, guid: 34472f2aa161daa428e3e2726c0d7b63, type: 3}

@@ -15,13 +15,16 @@ namespace Drops
         private List<Item> currentDrops = new List<Item>();
         public List<CookingRecipe> Recipes = new List<CookingRecipe>();
         public Slider TimerSlider;
+        private Animator _animator;
 
+        [SerializeField] Transform spawnPosition;
 
         private float _triggerTimer;
 
         private void Start()
         {
             TimerSlider.gameObject.SetActive(false);
+            _animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -81,6 +84,7 @@ namespace Drops
             {
                 StopAllCoroutines();
             }
+            _animator.Play("Idle");
         }
 
         public bool CheckIfRecipeOk(CookingRecipe recipe)
@@ -130,6 +134,7 @@ namespace Drops
 
         private IEnumerator StartCooking(CookingRecipe rec, float time)
         {
+            _animator.Play("Cooking");
             TimerSlider.gameObject.SetActive(true);
             var timer = time;
             while (timer > 0)
@@ -145,16 +150,17 @@ namespace Drops
             GenerateMeal(rec.ResultingMeal);
             isCooking = false;
             yield return null;
+            _animator.Play("Idle");
         }
 
         private void GenerateMeal(Meal meal)
         {
-            Instantiate(meal);
+            Instantiate(meal, spawnPosition.position, spawnPosition.rotation);
             isCooking = false;
-
+            _animator.Play("Idle");
             foreach (var item in currentDrops)
             {
-                Destroy(item);
+                Destroy(item.gameObject);
             }
 
             CurrentRecipe = null;

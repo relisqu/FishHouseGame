@@ -53,6 +53,8 @@ namespace Drops
             if (_drops.Contains(item))
                 return;
 
+            if (item.transform.parent != null)
+                return;
             _drops.Add(item);
             item.transform.parent = null;
             item.SetParent(this);

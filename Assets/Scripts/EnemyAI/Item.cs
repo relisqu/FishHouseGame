@@ -64,7 +64,7 @@ namespace DefaultNamespace.EnemyAI
 
         private void Update()
         {
-            if (currentState == State.Idle)
+            if (currentState == State.Idle && transform.parent == null)
             {
                 var yDelta = Mathf.Sin(Time.time * IdleMovementSpeed) * Time.deltaTime * IdleMovementAmplitude;
                 transform.position += Vector3.up * yDelta;

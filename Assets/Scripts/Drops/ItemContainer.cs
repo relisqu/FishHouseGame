@@ -102,6 +102,7 @@ namespace Drops
         {
             var drop = _ingredients[^1];
             _ingredients.Remove(drop);
+            drop.transform.parent = null;
             return drop;
         }
     }
