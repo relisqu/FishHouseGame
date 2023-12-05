@@ -96,5 +96,9 @@ namespace Drops
             return _drops.FirstOrDefault(it => it.name.StartsWith(ingredientTypeName));
         }
 
+        public Item GetItem(int i)
+        {
+            return _drops[i];
+        }
     }
 }

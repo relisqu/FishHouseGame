@@ -24,6 +24,12 @@ namespace DefaultNamespace.EnemyAI
 
         public enum State { Idle, Picked, Stored }
 
+        public ItemType CurItemType;
+        public enum ItemType
+        {
+            Rice, FSalmon, Salmon, Wheat
+        }
+
         void Start()
         {
             _startPosition = transform.position;
