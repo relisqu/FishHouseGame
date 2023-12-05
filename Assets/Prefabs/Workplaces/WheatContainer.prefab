@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4924728041680231834
+--- !u!1001 &1941069226624514396
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,22 +10,22 @@ PrefabInstance:
     - target: {fileID: 3054334124637386798, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -591436537, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
+      objectReference: {fileID: -1441433563, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
     - target: {fileID: 4707929827719116979, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: m_Name
-      value: RawSalmonContainer Variant
+      value: WheatContainer
       objectReference: {fileID: 0}
     - target: {fileID: 4707929827719116980, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: IngredientType
       value: 
-      objectReference: {fileID: 3666139977223832755, guid: 26b762317ba2ee447ab694ab8992612c, type: 3}
+      objectReference: {fileID: 3615025776347995599, guid: 6cebc41e431a4c64880f037fdd6f0ab5, type: 3}
     - target: {fileID: 4707929827719116984, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4707929827719116984, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.7079973
+      value: 13.99
       objectReference: {fileID: 0}
     - target: {fileID: 4707929827719116984, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -66,6 +66,18 @@ PrefabInstance:
     - target: {fileID: 4707929827719116985, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: m_Radius
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6030223126198316341, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6030223126198316341, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6030223126198316341, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}

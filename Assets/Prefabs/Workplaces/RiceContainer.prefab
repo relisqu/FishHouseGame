@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4924728041680231834
+--- !u!1001 &1206953657029538157
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,22 +10,22 @@ PrefabInstance:
     - target: {fileID: 3054334124637386798, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -591436537, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
+      objectReference: {fileID: 2131139019, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
     - target: {fileID: 4707929827719116979, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: m_Name
-      value: RawSalmonContainer Variant
+      value: RiceContainer
       objectReference: {fileID: 0}
     - target: {fileID: 4707929827719116980, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: IngredientType
       value: 
-      objectReference: {fileID: 3666139977223832755, guid: 26b762317ba2ee447ab694ab8992612c, type: 3}
+      objectReference: {fileID: 7350202073320763442, guid: 99c0edb7c7692474a82fcf47c3fe161a, type: 3}
     - target: {fileID: 4707929827719116984, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4707929827719116984, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.7079973
+      value: 13.99
       objectReference: {fileID: 0}
     - target: {fileID: 4707929827719116984, guid: 9618a4614e2af5e459e4b6d37746026c, type: 3}
       propertyPath: m_LocalPosition.y
