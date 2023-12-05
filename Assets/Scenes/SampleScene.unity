@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 828176565}
   - component: {fileID: 828176564}
   - component: {fileID: 828176563}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1561,6 +1561,10 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 7750110777205374108, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
     - target: {fileID: 7750110777205374109, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
       propertyPath: m_Name
       value: Player
