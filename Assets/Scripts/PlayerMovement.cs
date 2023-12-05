@@ -18,6 +18,9 @@ namespace DefaultNamespace
         [SerializeField] private Rigidbody Rigidbody;
 
         [SerializeField] private Camera Camera;
+
+        [SerializeField] LayerMask layerMask;
+
         private Animator _animator;
 
         private void Start()
@@ -63,7 +66,7 @@ namespace DefaultNamespace
         {
             Ray ray = Camera.ScreenPointToRay(_input.MousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance: 300f))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance: 300f, layerMask))
             {
                 var target = hitInfo.point;
                 target.y = transform.position.y;

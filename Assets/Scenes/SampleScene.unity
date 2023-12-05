@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 828176565}
   - component: {fileID: 828176564}
   - component: {fileID: 828176563}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1734,6 +1734,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 164442004, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 1559
+      objectReference: {fileID: 0}
     - target: {fileID: 3592279526639255692, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1750,6 +1754,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7750110777205374101, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: AttackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 48ec3e2a2e7637c47a864e4cd341e589, type: 3}
     - target: {fileID: 7750110777205374107, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -1802,6 +1810,10 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 7750110777205374108, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
     - target: {fileID: 7750110777205374109, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
       propertyPath: m_Name
       value: Player
