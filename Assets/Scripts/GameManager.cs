@@ -5,7 +5,7 @@ namespace DefaultNamespace
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
-
+        [SerializeField] HudUI hud;
         private void Start()
         {
             if (Instance == null)
@@ -19,12 +19,12 @@ namespace DefaultNamespace
 
         public void Win()
         {
-            
+            hud.Win();
         }
 
         public void Lose()
         {
-            
+            hud.Lose();
         }
     }
 }
