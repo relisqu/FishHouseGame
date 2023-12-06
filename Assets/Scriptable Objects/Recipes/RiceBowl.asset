@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RiceBowl
   m_EditorClassIdentifier: 
   Ingredients: 00000000
-  TimeToCook: 10
+  TimeToCook: 4
   ResultingMeal: {fileID: 2256482775666396299, guid: 34472f2aa161daa428e3e2726c0d7b63, type: 3}
