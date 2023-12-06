@@ -14,19 +14,18 @@ public class Recipe : MonoBehaviour
 
     private float remainingSeconds;
 
-    [Header("Slider")] 
-    public Slider Slider;
+    [Header("Slider")] public Slider Slider;
     public Image SliderImage;
 
     public Gradient TimeColor;
-    
+
 
     public IngredientImage IngredientPrefab;
     public Transform IngredientTransform;
-    
+
     public Image MealImage;
-    
-    
+
+
     public static Action FailedRecipe;
     private Animator _animator;
 
@@ -48,13 +47,16 @@ public class Recipe : MonoBehaviour
         while (remainingSeconds > 0)
         {
             Slider.value = remainingSeconds / defaultTimer;
-            SliderImage.color = TimeColor.Evaluate(1-Slider.value);
+            SliderImage.color = TimeColor.Evaluate(1 - Slider.value);
             remainingSeconds -= Time.deltaTime;
             yield return null;
         }
 
+        DefaultNamespace.GameManager.Instance.RecipeFailed++;
         Complete();
-        CameraShake.Instance.ShakeCamera(1f,0.2f);
+        FailedRecipe?.Invoke();
+
+        CameraShake.Instance.ShakeCamera(3.5f, 0.2f);
         yield return null;
     }
 
@@ -76,13 +78,26 @@ public class Recipe : MonoBehaviour
     void Complete()
     {
         _animator.SetTrigger("Complete");
-        Destroy(gameObject,0.3f);
+        Destroy(gameObject, 0.3f);
     }
 
     public void SetRecipeData(RecipeData recipe, float diffCoeff)
     {
-        SetTimer(recipe.TimeToCook * diffCoeff);
+        SetTimer(recipe.TimeToCook * 1 / diffCoeff);
         data = recipe;
         StartCoroutine(StartTimer());
+    }
+
+    public RecipeData GetData()
+    {
+        return data;
+    }
+
+    public void SetCompleted()
+    {
+
+        DefaultNamespace.GameManager.Instance.RecipeCompleted++;
+        StopAllCoroutines();
+        Complete();
     }
 }

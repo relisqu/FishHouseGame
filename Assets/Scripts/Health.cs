@@ -45,9 +45,9 @@ namespace DefaultNamespace
 
         private void Die(DamageType type)
         {
-            OnDeath.Invoke(type);
+            OnDeath?.Invoke(type);
             isAlive = false;
-            transform.DOScale(Vector3.zero, 0.2f);
+            transform.DOScale(Vector3.zero, 0.2f).OnComplete(() => {Destroy(gameObject); });
         }
     }
 }

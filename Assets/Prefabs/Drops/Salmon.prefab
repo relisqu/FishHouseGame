@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 3666139977223832716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.17, y: 2.82, z: 1.0941081}
-  m_LocalScale: {x: 0.55, y: 0.29, z: 0.96666664}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3666139977223832716}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -5668833170292645477, guid: 6f9b43710d7cd42449f1e41e4230f050, type: 3}
 --- !u!23 &3666139977223832753
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8a560d5359182a5409a96a9597c6624b, type: 2}
+  - {fileID: 2100000, guid: 47b736fee2c80d74c9e4341e26e21f53, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   IdleScaleSpeed: 0.7
   IdleScaleAmplitude: 0.5
   IngredientIcon: {fileID: -591436537, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
+  CurItemType: 2
 --- !u!54 &-6257177106359451194
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace DefaultNamespace.EnemyAI
 {
@@ -6,14 +7,18 @@ namespace DefaultNamespace.EnemyAI
     {
         [SerializeField] private float moveSpeed = 3f; // Speed of the AI movement
         [SerializeField] private float rotationSpeed = 2f; // Speed of the AI rotation
+        [SerializeField] private AudioClip wanderingSound;
 
         private Vector3 targetPosition; // Destination where AI is currently moving towards
 
         private Vector3 spawnPosition;
         private Health _health;
+        private AudioSource _audioSource;
 
         private void Start()
         {
+            _audioSource = GetComponent<AudioSource>();
+            StartCoroutine(Sound());
             _health = GetComponent<Health>();
             spawnPosition = transform.position;
             // Set initial target position randomly
@@ -24,6 +29,7 @@ namespace DefaultNamespace.EnemyAI
         {
             if (!_health.isAlive) return;
 
+            return;
             // Check if AI has reached the target position
             if (ReachedTargetPosition())
             {
@@ -66,6 +72,13 @@ namespace DefaultNamespace.EnemyAI
             float randomX = Random.Range(spawnPosition.x - 10f, spawnPosition.x + 10f);
             float randomZ = Random.Range(spawnPosition.z - 10f, spawnPosition.z + 10f);
             return new Vector3(randomX, 0.6f, randomZ);
+        }
+
+        IEnumerator Sound()
+        {
+            yield return new WaitForSeconds(Random.Range(0f, 2f));
+            _audioSource.clip = wanderingSound;
+            _audioSource.Play();
         }
     }
 }

@@ -19,6 +19,16 @@ namespace DefaultNamespace
 
         [SerializeField] private Camera Camera;
 
+        [SerializeField] LayerMask layerMask;
+        [SerializeField] AudioClip dashSound;
+
+        private Animator _animator;
+
+        private void Start()
+        {
+            _animator = GetComponent<Animator>();
+        }
+
         private void Awake()
         {
             _input = GetComponent<InputHandler>();
@@ -27,14 +37,18 @@ namespace DefaultNamespace
         // Update is called once per frame
         void Update()
         {
-            var targetVector = new Vector3(_input.InputVector.x, 0, _input.InputVector.y);
+            if (Time.timeScale == 0)
+                return;
+            var targetVector = new Vector3(_input.InputVector.x, Rigidbody.velocity.y, _input.InputVector.y);
             var speed = MovementSpeed * Time.deltaTime;
             
-            var movementVector = targetVector;
+            var movementVector = targetVector; 
+            _animator.SetBool("IsRunning", targetVector.magnitude>0.01f);
             if (Input.GetKeyDown(KeyCode.Space) && targetVector.magnitude>0.01f)
             {
                 Rigidbody.velocity= DashForce*targetVector.normalized;
                 DashParticles.Play();
+                GetComponent<AudioSource>().PlayOneShot(dashSound);
             }
             else
             {
@@ -56,7 +70,7 @@ namespace DefaultNamespace
         {
             Ray ray = Camera.ScreenPointToRay(_input.MousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance: 300f))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance: 300f, layerMask))
             {
                 var target = hitInfo.point;
                 target.y = transform.position.y;

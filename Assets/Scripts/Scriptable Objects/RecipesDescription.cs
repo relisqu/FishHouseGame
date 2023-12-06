@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using DefaultNamespace.EnemyAI;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -31,6 +32,7 @@ public class RecipeData
     [field: SerializeField] public List<Ingredient> Ingredients { get; set; }
 
     [field: SerializeField] public Sprite MealIcon { get; set; }
+    [field: SerializeField] public Meal Meal { get; set; }
 
     public override string ToString()
     {

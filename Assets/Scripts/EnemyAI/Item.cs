@@ -5,6 +5,16 @@ using DG.Tweening.Plugins.Options;
 using Drops;
 using UnityEngine;
 
+public enum ItemType
+{
+    Rice,
+    FSalmon,
+    Salmon,
+    Wheat,
+    Meal,
+    Cucumber,
+}
+
 namespace DefaultNamespace.EnemyAI
 {
     public class Item : MonoBehaviour
@@ -19,10 +29,23 @@ namespace DefaultNamespace.EnemyAI
         private Vector3 _startScale;
 
         private Transform _parent;
-        private State currentState =State.Idle;
+        private State currentState = State.Idle;
         public Sprite IngredientIcon;
 
-        public enum State { Idle, Picked, Stored }
+        public enum State
+        {
+            Idle,
+            Picked,
+            Stored
+        }
+
+        private void Awake()
+        {
+            _startScale = transform.localScale;
+        }
+
+        public ItemType CurItemType;
+
 
         void Start()
         {
@@ -35,16 +58,14 @@ namespace DefaultNamespace.EnemyAI
         {
             _startPosition = position;
             _startScale = transform.localScale;
-            if(currentState!= State.Idle) return;
+            if (currentState != State.Idle) return;
             _scaleTweenerCore = transform.DOScale(transform.localScale * (1 - IdleScaleAmplitude), IdleScaleSpeed)
                 .SetLoops(-1, LoopType.Yoyo);
         }
 
         private void Update()
         {
-            
-
-            if (currentState== State.Idle)
+            if (currentState == State.Idle && transform.parent == null)
             {
                 var yDelta = Mathf.Sin(Time.time * IdleMovementSpeed) * Time.deltaTime * IdleMovementAmplitude;
                 transform.position += Vector3.up * yDelta;
@@ -57,7 +78,6 @@ namespace DefaultNamespace.EnemyAI
             currentState = State.Picked;
             _scaleTweenerCore.Kill();
             transform.localScale = _startScale;
-
         }
 
         public State GetState()
@@ -70,6 +90,11 @@ namespace DefaultNamespace.EnemyAI
             currentState = State.Stored;
             _parent = parentTransform;
             transform.parent = parentTransform;
+        }
+
+        public void SetState(State s)
+        {
+            currentState = s;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace DefaultNamespace
         {
             if (other.TryGetComponent(out Enemy enemy))
             {
-                enemy.GetComponent<Health>().TakeDamage(1, Health.DamageType.BySword);
+                enemy.GetComponent<Health>().TakeDamage(2, Health.DamageType.BySword);
             }
         }
 
