@@ -40,6 +40,8 @@ namespace DefaultNamespace
         public void Win()
         {
             hud.Win();
+            int ml = PlayerPrefs.GetInt("MaxLevel");
+            PlayerPrefs.SetInt("MaxLevel", Mathf.Max(ml, UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex));
         }
 
         public void Lose()
