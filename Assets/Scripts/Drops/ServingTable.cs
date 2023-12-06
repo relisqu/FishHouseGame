@@ -29,14 +29,17 @@ namespace Drops
             foreach (var r in recipes)
             {
                 //Debug.Log(r.GetData().Meal.Type);
+                Debug.Log("Item in recipes: " + r.name);
                 if (r.GetData().Meal.Type == meal.GetComponent<Meal>().Type)
                 {
+                    
                     RecipeGenerator.Instance.CompleteRecipe(r);
                     pack.RemoveItem(meal);
                     Destroy(meal.gameObject);
+                    return;
                 }
-
-                return;
+                
+                
             }
         }
     }

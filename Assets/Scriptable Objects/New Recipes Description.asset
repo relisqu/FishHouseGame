@@ -46,7 +46,7 @@ MonoBehaviour:
       Data: 
     - Name: <TimeToCook>k__BackingField
       Entry: 4
-      Data: 20
+      Data: 7
     - Name: <Ingredients>k__BackingField
       Entry: 7
       Data: 2|System.Collections.Generic.List`1[[Ingredient, Assembly-CSharp]], mscorlib
@@ -109,7 +109,7 @@ MonoBehaviour:
       Data: 
     - Name: <TimeToCook>k__BackingField
       Entry: 4
-      Data: 10
+      Data: 6
     - Name: <Ingredients>k__BackingField
       Entry: 7
       Data: 6|System.Collections.Generic.List`1[[Ingredient, Assembly-CSharp]], mscorlib
@@ -157,7 +157,7 @@ MonoBehaviour:
       Data: 
     - Name: <TimeToCook>k__BackingField
       Entry: 4
-      Data: 15
+      Data: 8
     - Name: <Ingredients>k__BackingField
       Entry: 7
       Data: 9|System.Collections.Generic.List`1[[Ingredient, Assembly-CSharp]], mscorlib

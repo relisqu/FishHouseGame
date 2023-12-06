@@ -28,6 +28,16 @@ namespace DefaultNamespace.UI
             return _currentRecipes;
         }
 
+        private void Update()
+        {
+            foreach (var r in _currentRecipes)
+            {
+                if (r != null) continue;
+                _currentRecipes.Remove(r);
+                break;
+
+            }
+        }
 
         private IEnumerator GenerateRecipes()
         {

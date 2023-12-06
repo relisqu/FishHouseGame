@@ -42,10 +42,13 @@ namespace Drops
             {
                 if (other.gameObject.TryGetComponent(out PlayerBagPack pack))
                 {
+
                     var item = pack.GetItem(0);
                     Debug.Log(item);
                     if (item != null)
                     {
+                        if (item.CurItemType == ItemType.Meal)
+                            return;
                         pack.RemoveItem(item);
                         item.gameObject.SetActive(false);
                         currentDrops.Add(item);
