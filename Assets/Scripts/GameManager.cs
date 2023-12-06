@@ -9,6 +9,7 @@ namespace DefaultNamespace
         [SerializeField] float LevelTime;
         [SerializeField] GameMode gameMode;
         public int RecipeCompleted;
+        public int RecipeFailed;
         public int HP;
 
         float _timeLeft;

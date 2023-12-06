@@ -319,7 +319,7 @@ MonoBehaviour:
   IdleMovementAmplitude: 0.5
   IdleScaleSpeed: 0.7
   IdleScaleAmplitude: 0.5
-  IngredientIcon: {fileID: 2131139019, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
+  IngredientIcon: {fileID: -46126743, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
   CurItemType: 4
 --- !u!114 &2256482775666396299
 MonoBehaviour:

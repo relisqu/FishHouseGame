@@ -52,6 +52,7 @@ public class Recipe : MonoBehaviour
             yield return null;
         }
 
+        DefaultNamespace.GameManager.Instance.RecipeFailed++;
         Complete();
         FailedRecipe?.Invoke();
 
@@ -94,6 +95,8 @@ public class Recipe : MonoBehaviour
 
     public void SetCompleted()
     {
+
+        DefaultNamespace.GameManager.Instance.RecipeCompleted++;
         StopAllCoroutines();
         Complete();
     }

@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8843581eea343a58161e4842613ef14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurDropTable: {fileID: 11400000, guid: f2166bbf405c06b46a54e3faf16b51a7, type: 2}
+  CurDropTable: {fileID: 11400000, guid: c7ad8df0780baba47b88a2ca09f5701a, type: 2}
   JumpMovement: {x: 1, y: 1}
   JumpTime: 1.5
 --- !u!1 &880387106628802899
