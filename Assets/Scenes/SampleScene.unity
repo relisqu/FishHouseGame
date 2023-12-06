@@ -4570,6 +4570,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8033932495808975841, guid: 2a77b3ca51af87a4d8eaab4b204be04d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d0054e2826ae0cc4e8abb517bd8d7ac5, type: 2}
     - target: {fileID: 8033932496779274228, guid: 2a77b3ca51af87a4d8eaab4b204be04d, type: 3}
       propertyPath: m_Name
       value: Lake
@@ -4596,7 +4600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8033932496779274230, guid: 2a77b3ca51af87a4d8eaab4b204be04d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.84
+      value: 0.79
       objectReference: {fileID: 0}
     - target: {fileID: 8033932496779274230, guid: 2a77b3ca51af87a4d8eaab4b204be04d, type: 3}
       propertyPath: m_LocalPosition.z

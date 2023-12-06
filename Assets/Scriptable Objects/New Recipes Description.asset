@@ -19,9 +19,9 @@ MonoBehaviour:
     - {fileID: 3666139977223832755, guid: 26b762317ba2ee447ab694ab8992612c, type: 3}
     - {fileID: 7350202073320763442, guid: 99c0edb7c7692474a82fcf47c3fe161a, type: 3}
     - {fileID: -1825444654, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
-    - {fileID: 4505249095184305803, guid: a0d0fd0480e749c42a11f9b3a4fd1c54, type: 3}
+    - {fileID: 0}
     - {fileID: -1029882368, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
-    - {fileID: 1136355537395159952, guid: 3f3f8e96274e9fe46897fc96a97f7379, type: 3}
+    - {fileID: 0}
     - {fileID: 1484749272, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
     - {fileID: 2256482775666396299, guid: 34472f2aa161daa428e3e2726c0d7b63, type: 3}
     SerializedBytesString: 
@@ -46,7 +46,7 @@ MonoBehaviour:
       Data: 
     - Name: <TimeToCook>k__BackingField
       Entry: 4
-      Data: 20
+      Data: 30
     - Name: <Ingredients>k__BackingField
       Entry: 7
       Data: 2|System.Collections.Generic.List`1[[Ingredient, Assembly-CSharp]], mscorlib
@@ -109,7 +109,7 @@ MonoBehaviour:
       Data: 
     - Name: <TimeToCook>k__BackingField
       Entry: 4
-      Data: 10
+      Data: 30
     - Name: <Ingredients>k__BackingField
       Entry: 7
       Data: 6|System.Collections.Generic.List`1[[Ingredient, Assembly-CSharp]], mscorlib
@@ -157,7 +157,7 @@ MonoBehaviour:
       Data: 
     - Name: <TimeToCook>k__BackingField
       Entry: 4
-      Data: 15
+      Data: 30
     - Name: <Ingredients>k__BackingField
       Entry: 7
       Data: 9|System.Collections.Generic.List`1[[Ingredient, Assembly-CSharp]], mscorlib
