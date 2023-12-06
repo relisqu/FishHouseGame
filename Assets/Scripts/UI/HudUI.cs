@@ -26,6 +26,7 @@ public class HudUI : MonoBehaviour
     [SerializeField] GameObject ConfirmMessange;
 
     AudioListener _audioListener;
+    bool _gameOver;
     void Start()
     {
         Time.timeScale = 1;
@@ -35,9 +36,9 @@ public class HudUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 1)
+        if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 1 && !_gameOver)
             Pause();
-        else if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 0)
+        else if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 0 && !_gameOver)
             Continue();
 
     }
@@ -92,6 +93,7 @@ public class HudUI : MonoBehaviour
 
     public void Lose()
     {
+        _gameOver = true;
         Pause();
         PauseMessange.SetActive(false);
         LoseMessange.SetActive(true);
@@ -102,6 +104,7 @@ public class HudUI : MonoBehaviour
 
     public void Win()
     {
+        _gameOver = true;
         Pause();
         PauseMessange.SetActive(false);
         WinMessange.SetActive(true);

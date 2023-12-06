@@ -10,13 +10,14 @@ namespace Drops
     {
         private void OnTriggerStay(Collider other)
         {
-            Debug.Log(other.name);
+            //Debug.Log(other.name);
             if (other.TryGetComponent(out PlayerBagPack pack) && Input.GetKeyDown(KeyCode.E))
             {
                 var meal = pack.HasItems(ItemType.Meal);
                 Debug.Log(meal);
                 if (meal != null)
                 {
+                    Debug.Log("Searching...");
                     SearchForRecipes(meal, pack);
                 }
             }
@@ -27,7 +28,7 @@ namespace Drops
             var recipes = RecipeGenerator.Instance.GetRecipes();
             foreach (var r in recipes)
             {
-                Debug.Log(r.GetData().Meal.Type);
+                //Debug.Log(r.GetData().Meal.Type);
                 if (r.GetData().Meal.Type == meal.GetComponent<Meal>().Type)
                 {
                     RecipeGenerator.Instance.CompleteRecipe(r);

@@ -90,6 +90,7 @@ namespace Drops
         public bool CheckIfRecipeOk(CookingRecipe recipe)
         {
             var list = new List<Item>(currentDrops);
+            var recipeCopy = new List<ItemType>(recipe.Ingredients);
 
             foreach (var ingredient in recipe.Ingredients)
             {
@@ -117,6 +118,7 @@ namespace Drops
                 bool hasIngredients = true;
                 if (!CheckIfRecipeOk(rec)) continue;
                 CurrentRecipe = rec;
+                Debug.Log("Cooking " + rec.name);
                 StartCoroutine(StartCooking(rec, rec.TimeToCook));
                 return;
             }

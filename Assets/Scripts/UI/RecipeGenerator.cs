@@ -34,6 +34,13 @@ namespace DefaultNamespace.UI
             var curNumRecipes = 0;
             while (curNumRecipes < MaxRecipesCount)
             {
+                foreach (var r in _currentRecipes)
+                {
+                    if (r != null) continue;
+                    _currentRecipes.Remove(r);
+                    break;
+                    
+                }
                 curNumRecipes++;
                 var recipe = Recipes.GetRandomRecipe();
                 var data = Instantiate(RecipePrefab, RecipesTransform);
@@ -46,13 +53,14 @@ namespace DefaultNamespace.UI
 
         public void RemoveRecipe(Recipe recipe)
         {
-            _currentRecipes.Remove(recipe);
+            Debug.Log("Recipe is deleted: " + _currentRecipes.Remove(recipe));
         }
 
         public void CompleteRecipe(Recipe recipe)
         {
-            recipe.SetCompleted();
+
             RemoveRecipe(recipe);
+            recipe.SetCompleted();
         }
     }
 }

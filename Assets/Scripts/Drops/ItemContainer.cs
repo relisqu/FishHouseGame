@@ -53,7 +53,8 @@ namespace Drops
             {
                 if (other.gameObject.TryGetComponent(out PlayerBagPack pack))
                 {
-                    var item = pack.HasItems(IngredientType.name);
+                    var item = pack.HasItems(IngredientType.CurItemType);
+                    //var item = pack.HasItems(IngredientType.name);
                     if (item)
                     {
                         _triggerTimer = 0.3f;
