@@ -37,6 +37,8 @@ namespace DefaultNamespace
         // Update is called once per frame
         void Update()
         {
+            if (Time.timeScale == 0)
+                return;
             var targetVector = new Vector3(_input.InputVector.x, Rigidbody.velocity.y, _input.InputVector.y);
             var speed = MovementSpeed * Time.deltaTime;
             

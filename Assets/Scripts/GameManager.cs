@@ -6,15 +6,34 @@ namespace DefaultNamespace
     {
         public static GameManager Instance;
         [SerializeField] HudUI hud;
+        [SerializeField] float LevelTime;
+        [SerializeField] GameMode gameMode;
+        public int RecipeCompleted;
+        public int HP;
+
+        float _timeLeft;
         private void Start()
         {
             if (Instance == null)
                 Instance = this;
+            _timeLeft = LevelTime;
         }
 
         public enum GameMode
         {
             Infinite, LevelBased
+        }
+
+        private void Update()
+        {
+            _timeLeft = Mathf.Clamp(_timeLeft -= Time.deltaTime, 0, float.MaxValue);
+            if (gameMode == GameMode.LevelBased)
+                hud.SetTimeSlider(1 - _timeLeft / LevelTime);
+            //hud.SetTime(_timeLeft);
+
+            if (_timeLeft <= 0 && gameMode == GameMode.LevelBased)
+                Win();
+            
         }
 
         public void Win()

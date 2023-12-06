@@ -37,7 +37,7 @@ namespace DefaultNamespace.Additional
 
         private void Update()
         {
-            if (timer <= 0) return;
+            if (timer < 0) return;
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
