@@ -25,6 +25,10 @@ public class HudUI : MonoBehaviour
     [SerializeField] GameObject PauseMessange;
     [SerializeField] GameObject ConfirmMessange;
 
+    [Header("turnOff")]
+    [SerializeField] GameObject Recipes;
+    [SerializeField] GameObject HPS;
+
     AudioListener _audioListener;
     bool _gameOver;
     void Start()
@@ -99,24 +103,26 @@ public class HudUI : MonoBehaviour
         LoseMessange.SetActive(true);
         ContinueButton.gameObject.SetActive(false);
         NextLevelButton.gameObject.SetActive(false);
+        ShowStats();
 
     }
 
     public void Win()
     {
+        
         _gameOver = true;
         Pause();
         PauseMessange.SetActive(false);
         WinMessange.SetActive(true);
         ContinueButton.gameObject.SetActive(false);
         NextLevelButton.gameObject.SetActive(true);
+        ShowStats();
 
     }
 
     public void Exit()
     {
         Confirm(delegate { Application.Quit(0); });
-        
     }
 
     void Confirm(UnityEngine.Events.UnityAction action)
@@ -136,5 +142,15 @@ public class HudUI : MonoBehaviour
     {
         timeSlider.gameObject.SetActive(true);
         timeSlider.value = value;
+    }
+
+    public void ShowStats()
+    {
+        HPS.SetActive(false);
+        Recipes.SetActive(false);
+        BackGround.gameObject.SetActive(true);
+        text.gameObject.SetActive(true);
+        text.text = "Completed Recipes:\n";
+        text.text += $"{DefaultNamespace.GameManager.Instance.RecipeCompleted}/{DefaultNamespace.GameManager.Instance.RecipeCompleted + DefaultNamespace.GameManager.Instance.RecipeFailed}";
     }
 }

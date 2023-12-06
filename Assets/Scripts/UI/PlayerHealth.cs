@@ -34,7 +34,7 @@ namespace DefaultNamespace.UI
         public void TakeDamage()
         {
             Health -= 1;
-            if (Health >= 0)
+            if (Health > 0)
             {
                 HeartObjects[Health].sprite = DamagedHeart;
             }

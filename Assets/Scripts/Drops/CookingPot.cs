@@ -165,12 +165,14 @@ namespace Drops
             _animator.Play("Idle");
             foreach (var item in currentDrops)
             {
+                if (item != null)
                 Destroy(item.gameObject);
             }
 
             CurrentRecipe = null;
             TimeLeftToCook = 0;
             _triggerTimer = 0;
+            currentDrops.Clear();
         }
 
         private void FailRecipe()

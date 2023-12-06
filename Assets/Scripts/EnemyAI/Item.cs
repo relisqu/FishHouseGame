@@ -11,7 +11,8 @@ public enum ItemType
     FSalmon,
     Salmon,
     Wheat,
-    Meal
+    Meal,
+    Cucumber,
 }
 
 namespace DefaultNamespace.EnemyAI

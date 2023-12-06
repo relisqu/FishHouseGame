@@ -868,6 +868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Recipes:
+  - {fileID: 11400000, guid: d57dcb30837478b4cbeeec640aefb48f, type: 2}
   - {fileID: 11400000, guid: a3710d2f9e81b3f41b2e17c25efc0646, type: 2}
   - {fileID: 11400000, guid: 63281438048c4394c9b73882a0fefaca, type: 2}
   TimerSlider: {fileID: 2505404433782548004}

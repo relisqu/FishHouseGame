@@ -14,7 +14,7 @@ public enum MealType
     Sushi,
     Ramen, 
     NoodlesWithFish, 
-    Poke, 
+    Rolls, 
     RiceBowl, 
     FishRiceBowl,
     BaoBun,
