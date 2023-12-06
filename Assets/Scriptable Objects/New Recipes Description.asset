@@ -24,6 +24,12 @@ MonoBehaviour:
     - {fileID: 1136355537395159952, guid: 3f3f8e96274e9fe46897fc96a97f7379, type: 3}
     - {fileID: 1484749272, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
     - {fileID: 2256482775666396299, guid: 34472f2aa161daa428e3e2726c0d7b63, type: 3}
+    - {fileID: 3615025776347995599, guid: 6cebc41e431a4c64880f037fdd6f0ab5, type: 3}
+    - {fileID: 925438108046538534, guid: d6a28c1628bb4f04db2c74b6146eeaa8, type: 3}
+    - {fileID: -1764447039, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
+    - {fileID: 2256482775666396299, guid: 32902bc1b0bcb6e4781cc364a0ec83fd, type: 3}
+    - {fileID: 1960884425, guid: caa3b235b593cb5488ad00460fc4b5c8, type: 3}
+    - {fileID: 2256482775666396299, guid: 1ee1a6e44af5e044481ad6d240aff258, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -34,7 +40,7 @@ MonoBehaviour:
       Data: 0|System.Collections.Generic.List`1[[RecipeData, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 5
     - Name: 
       Entry: 7
       Data: 1|RecipeData, Assembly-CSharp
@@ -46,7 +52,7 @@ MonoBehaviour:
       Data: 
     - Name: <TimeToCook>k__BackingField
       Entry: 4
-      Data: 7
+      Data: 45
     - Name: <Ingredients>k__BackingField
       Entry: 7
       Data: 2|System.Collections.Generic.List`1[[Ingredient, Assembly-CSharp]], mscorlib
@@ -109,7 +115,7 @@ MonoBehaviour:
       Data: 
     - Name: <TimeToCook>k__BackingField
       Entry: 4
-      Data: 6
+      Data: 40
     - Name: <Ingredients>k__BackingField
       Entry: 7
       Data: 6|System.Collections.Generic.List`1[[Ingredient, Assembly-CSharp]], mscorlib
@@ -157,7 +163,7 @@ MonoBehaviour:
       Data: 
     - Name: <TimeToCook>k__BackingField
       Entry: 4
-      Data: 8
+      Data: 30
     - Name: <Ingredients>k__BackingField
       Entry: 7
       Data: 9|System.Collections.Generic.List`1[[Ingredient, Assembly-CSharp]], mscorlib
@@ -191,6 +197,134 @@ MonoBehaviour:
     - Name: <Meal>k__BackingField
       Entry: 10
       Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 11|RecipeData, Assembly-CSharp
+    - Name: <Name>k__BackingField
+      Entry: 1
+      Data: BaoBun
+    - Name: <Description>k__BackingField
+      Entry: 6
+      Data: 
+    - Name: <TimeToCook>k__BackingField
+      Entry: 4
+      Data: 30
+    - Name: <Ingredients>k__BackingField
+      Entry: 7
+      Data: 12|System.Collections.Generic.List`1[[Ingredient, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 13|Ingredient, Assembly-CSharp
+    - Name: <IngredientItem>k__BackingField
+      Entry: 10
+      Data: 8
+    - Name: <MinAmount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: <MaxAmount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 14|Ingredient, Assembly-CSharp
+    - Name: <IngredientItem>k__BackingField
+      Entry: 10
+      Data: 9
+    - Name: <MinAmount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: <MaxAmount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <MealIcon>k__BackingField
+      Entry: 10
+      Data: 10
+    - Name: <Meal>k__BackingField
+      Entry: 10
+      Data: 11
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 15|RecipeData, Assembly-CSharp
+    - Name: <Name>k__BackingField
+      Entry: 1
+      Data: FishRice
+    - Name: <Description>k__BackingField
+      Entry: 6
+      Data: 
+    - Name: <TimeToCook>k__BackingField
+      Entry: 4
+      Data: 30
+    - Name: <Ingredients>k__BackingField
+      Entry: 7
+      Data: 16|System.Collections.Generic.List`1[[Ingredient, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 17|Ingredient, Assembly-CSharp
+    - Name: <IngredientItem>k__BackingField
+      Entry: 10
+      Data: 1
+    - Name: <MinAmount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: <MaxAmount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 18|Ingredient, Assembly-CSharp
+    - Name: <IngredientItem>k__BackingField
+      Entry: 10
+      Data: 9
+    - Name: <MinAmount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: <MaxAmount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <MealIcon>k__BackingField
+      Entry: 10
+      Data: 12
+    - Name: <Meal>k__BackingField
+      Entry: 10
+      Data: 13
     - Name: 
       Entry: 8
       Data: 

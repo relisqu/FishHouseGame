@@ -10,5 +10,12 @@ namespace DefaultNamespace
 
 public enum MealType
 {
-    Sashimi, Sushi, Ramen, NoodlesWithFish, Poke, RiceBowl
+    Sashimi, 
+    Sushi,
+    Ramen, 
+    NoodlesWithFish, 
+    Poke, 
+    RiceBowl, 
+    FishRiceBowl,
+    BaoBun,
 }

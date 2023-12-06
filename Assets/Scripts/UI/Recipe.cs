@@ -82,7 +82,7 @@ public class Recipe : MonoBehaviour
 
     public void SetRecipeData(RecipeData recipe, float diffCoeff)
     {
-        SetTimer(recipe.TimeToCook * diffCoeff);
+        SetTimer(recipe.TimeToCook * 1 / diffCoeff);
         data = recipe;
         StartCoroutine(StartTimer());
     }

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1495eaf98c2e42368aae87d995912ae5, type: 3}
-  m_Name: Sushi
+  m_Name: Sashimi
   m_EditorClassIdentifier: 
-  Ingredients: 020000000000000000000000
-  TimeToCook: 10
-  ResultingMeal: {fileID: 4505249095184305803, guid: a0d0fd0480e749c42a11f9b3a4fd1c54, type: 3}
+  Ingredients: 0200000002000000
+  TimeToCook: 5
+  ResultingMeal: {fileID: 1136355537395159952, guid: 3f3f8e96274e9fe46897fc96a97f7379, type: 3}
