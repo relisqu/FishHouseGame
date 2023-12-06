@@ -9284,7 +9284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469692740}
   m_LocalRotation: {x: 0.2816531, y: 0.0014570579, z: -0.00042770032, w: 0.9595151}
-  m_LocalPosition: {x: 2.55, y: 12.58, z: -10.54}
+  m_LocalPosition: {x: 2.55, y: 13.210001, z: -10.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18718,7 +18718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hud: {fileID: 1412430311}
-  LevelTime: 120
+  LevelTime: 90
   gameMode: 1
   RecipeCompleted: 0
   RecipeFailed: 0
@@ -18930,7 +18930,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.2816531, y: 0.0014570579, z: -0.00042770032, w: 0.9595151}
-  m_LocalPosition: {x: 2.55, y: 12.58, z: -10.54}
+  m_LocalPosition: {x: 2.55, y: 13.210001, z: -10.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40824,7 +40824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7750110777205374107, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.31
+      value: 1.94
       objectReference: {fileID: 0}
     - target: {fileID: 7750110777205374107, guid: cd2fc2efdcfaeb342b1782dabf5eda76, type: 3}
       propertyPath: m_LocalPosition.z

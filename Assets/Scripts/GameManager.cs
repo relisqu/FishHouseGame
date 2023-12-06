@@ -11,6 +11,7 @@ namespace DefaultNamespace
         public int RecipeCompleted;
         public int RecipeFailed;
         public int HP;
+        private bool _isOver;
 
         float _timeLeft;
         private void Start()
@@ -39,9 +40,13 @@ namespace DefaultNamespace
 
         public void Win()
         {
+            if (_isOver)
+                return;
+
+            _isOver = true;
             hud.Win();
             int ml = PlayerPrefs.GetInt("MaxLevel");
-            PlayerPrefs.SetInt("MaxLevel", Mathf.Max(ml, UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex));
+            PlayerPrefs.SetInt("MaxLevel", Mathf.Max(ml, UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1));
         }
 
         public void Lose()

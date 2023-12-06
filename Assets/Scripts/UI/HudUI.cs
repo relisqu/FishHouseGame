@@ -92,7 +92,7 @@ public class HudUI : MonoBehaviour
     public void NextLevel()
     {
         Time.timeScale = 1;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex % UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings);
+        UnityEngine.SceneManagement.SceneManager.LoadScene((UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1) % UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings);
     }
 
     public void Lose()
