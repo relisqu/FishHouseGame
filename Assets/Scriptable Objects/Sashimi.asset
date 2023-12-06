@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1495eaf98c2e42368aae87d995912ae5, type: 3}
   m_Name: Sashimi
   m_EditorClassIdentifier: 
-  Ingredients: 02000000
+  Ingredients: 0200000002000000
   TimeToCook: 10
   ResultingMeal: {fileID: 1136355537395159952, guid: 3f3f8e96274e9fe46897fc96a97f7379, type: 3}

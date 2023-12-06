@@ -101,6 +101,7 @@ namespace Drops
             return _drops.FirstOrDefault(it => it.name.StartsWith(ingredientTypeName));
         }
 
+
         public Item HasItems(ItemType type)
         {
             return _drops.FirstOrDefault(it => it.CurItemType == type);
