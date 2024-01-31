@@ -75,7 +75,9 @@ Shader "Hidden/Pixel"
             {
                 float4 NormalDepth;
                 DecodeDepthNormal(tex2D(_CameraDepthNormalsTexture, uv + offset), NormalDepth.w, NormalDepth.xyz);
-                return NormalDepth.w;
+                float depth = 1 - NormalDepth.w * 100;
+                //depth = clamp(NormalDepth.w, 0, 1);
+                return depth;
             }
 
             float3 getNormals(float2 uv, float2 offset)
@@ -91,61 +93,44 @@ Shader "Hidden/Pixel"
                 return c;
             }
 
-            float GetDepthBorder(float2 uv, float depthThreshold)
-            {
-                float2 bottomLeftDepth = getDepth(
-                    uv, -float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
-                float2 topRightDepth = getDepth(
-                    uv, float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
-                float2 bottomRightDepth = getDepth(
-                    uv, float2(_MainTex_TexelSize.x, -_MainTex_TexelSize.y));
-                float2 topLeftDepth = getDepth(uv, float2(-_MainTex_TexelSize.x,
-                                                          _MainTex_TexelSize.y));
-
-                float depthFiniteDifference0 = topRightDepth - bottomLeftDepth;
-                float depthFiniteDifference1 = topLeftDepth - bottomRightDepth;
-                float edgeDepth = sqrt(pow(depthFiniteDifference0, 2) + pow(depthFiniteDifference1, 2)) * 100;
-                edgeDepth = edgeDepth > depthThreshold ? 1 : 0;
-
-                return edgeDepth;
-            }
-
-            float GetNormalBorder(float2 uv, float normalThreshold)
-            {
-                float3 bottomLeftDepth = getNormals(
-                    uv, -float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
-                float3 topRightDepth = getNormals(
-                    uv, float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
-                float3 bottomRightDepth = getNormals(
-                    uv, float2(_MainTex_TexelSize.x, -_MainTex_TexelSize.y));
-                float3 topLeftDepth = getNormals(uv, float2(-_MainTex_TexelSize.x,
-                                                            _MainTex_TexelSize.y));
-
-                float depthFiniteDifference0 = topRightDepth - bottomLeftDepth;
-                float depthFiniteDifference1 = topLeftDepth - bottomRightDepth;
-                float edgeDepth = sqrt(pow(depthFiniteDifference0, 2) + pow(depthFiniteDifference1, 2));
-                edgeDepth = edgeDepth > normalThreshold ? 1 : 0;
-                return edgeDepth;
-            }
 
             fixed4 frag(v2f i) : SV_Target
             {
                 int texelX = floor(i.uv.x * _Resolution.x);
                 int texelY = floor(i.uv.y * _Resolution.y);
                 float2 cord = pixelateCoord(float2(texelX, texelY));
+                float depth = getDepth(cord, 0);
+                float2 uvs[4];
+                uvs[0] = cord + float2(0.0, _MainTex_TexelSize.y);
+                uvs[1] = cord - float2(0.0, _MainTex_TexelSize.y);
+                uvs[2] = cord + float2(_MainTex_TexelSize.x, 0);
+                uvs[3] = cord - float2(_MainTex_TexelSize.x, 0);
 
-                float edgeDepth = GetDepthBorder(cord, _DepthThreshold);
-                float edgeNormal = GetNormalBorder(cord, _NormalThreshold);
-                return edgeDepth * _OutlineColor + edgeNormal;
-                float edge = max(edgeDepth, edgeNormal);
-                if (edgeDepth > 0)
+                float depths[4];
+                float depthDiff = 0.0;
+
+                for (int i = 0; i < 4; ++i)
                 {
-                    return edge;
+                    depths[i] = getDepth(uvs[i], 0);
+                    depthDiff += depth - depths[i];
                 }
-                else
+
+                float depthEdge = step(_DepthThreshold, depthDiff);
+
+                float3 normal = getNormals(cord, 0);
+                float3 normals[4];
+                float dotsum = 0.0;
+                for (int i = 0; i < 4; ++i)
                 {
-                    return tex2D(_MainTex, i.uv);
+                    normals[i] = getNormals(uvs[i], 0);
+                    float3 nDiff = normal - normals[i];
+                    dotsum += dot(nDiff, nDiff);
                 }
+                float indic = sqrt(dotsum);
+                float normalEdge = step(_NormalThreshold, indic);
+
+                float outline =max(depthEdge,normalEdge);
+                return outline;
             }
             ENDCG
         }
