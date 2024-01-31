@@ -15,7 +15,7 @@ namespace DefaultNamespace
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.TryGetComponent(out Enemy enemy))
+            if (collision.gameObject.TryGetComponent(out Enemy enemy))  
             {
                 enemy.GetComponent<Health>().TakeDamage(1, Health.DamageType.BySword);
             }
