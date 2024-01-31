@@ -7,6 +7,7 @@ Shader "Hidden/Pixel"
         _MainTex ("Texture", 2D) = "white" {}
         _DitherTex ("Dither Texture", 2D) = "white" {}
         _PixelPalletCount("Pixel Pallet", int) = 0
+        _DitherAmount("Dither Strength", Range (0, 1)) = 0.005
         [ShowAsVector2]_Resolution("Resolution", Vector)= (1920,1080,0,0)
         _PixelSize("Pixel size", int) = 2
     }
@@ -58,6 +59,7 @@ Shader "Hidden/Pixel"
             sampler2D _DitherTex;
             int _PixelSize;
             vector _Resolution;
+            float _DitherAmount;
 
             fixed4 frag(v2f i) : SV_Target
             {
@@ -69,14 +71,15 @@ Shader "Hidden/Pixel"
                 
                 float2 ditherCoord = frac((cord/ float(_PixelSize)) / 8.0);
                 float4 inColor = tex2D(_MainTex, i.uv);
+                
                 float4 nearestColor = _Pallet[0];
-                float nearestDistance = 5.0;
+                float nearestDistance = 100.0;
 
                 
                 for (int i = 0; i < _PixelPalletCount; i++)
                 {
                     float dist = length(inColor - _Pallet[i]);
-                    if (dist < nearestDistance + tex2D(_DitherTex, ditherCoord).x * 0.03)
+                    if (dist < nearestDistance + tex2D(_DitherTex, ditherCoord).x * _DitherAmount)
                     {
                         nearestDistance = dist;
                         nearestColor = _Pallet[i];

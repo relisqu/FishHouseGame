@@ -78,7 +78,7 @@ Shader "Hidden/Pixel"
                 return NormalDepth.w;
             }
 
-            float getNormals(float2 uv, float2 offset)
+            float3 getNormals(float2 uv, float2 offset)
             {
                 float4 NormalDepth;
                 DecodeDepthNormal(tex2D(_CameraDepthNormalsTexture, uv + offset), NormalDepth.w, NormalDepth.xyz);
@@ -88,9 +88,44 @@ Shader "Hidden/Pixel"
             float2 pixelateCoord(float2 coord)
             {
                 float2 c = floor(coord / float(_PixelSize)) * float(_PixelSize) / _Resolution.xy;
-
-                //c.y = 1.0 - c.y;
                 return c;
+            }
+
+            float GetDepthBorder(float2 uv, float depthThreshold)
+            {
+                float2 bottomLeftDepth = getDepth(
+                    uv, -float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
+                float2 topRightDepth = getDepth(
+                    uv, float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
+                float2 bottomRightDepth = getDepth(
+                    uv, float2(_MainTex_TexelSize.x, -_MainTex_TexelSize.y));
+                float2 topLeftDepth = getDepth(uv, float2(-_MainTex_TexelSize.x,
+                                                          _MainTex_TexelSize.y));
+
+                float depthFiniteDifference0 = topRightDepth - bottomLeftDepth;
+                float depthFiniteDifference1 = topLeftDepth - bottomRightDepth;
+                float edgeDepth = sqrt(pow(depthFiniteDifference0, 2) + pow(depthFiniteDifference1, 2)) * 100;
+                edgeDepth = edgeDepth > depthThreshold ? 1 : 0;
+
+                return edgeDepth;
+            }
+
+            float GetNormalBorder(float2 uv, float normalThreshold)
+            {
+                float3 bottomLeftDepth = getNormals(
+                    uv, -float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
+                float3 topRightDepth = getNormals(
+                    uv, float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
+                float3 bottomRightDepth = getNormals(
+                    uv, float2(_MainTex_TexelSize.x, -_MainTex_TexelSize.y));
+                float3 topLeftDepth = getNormals(uv, float2(-_MainTex_TexelSize.x,
+                                                            _MainTex_TexelSize.y));
+
+                float depthFiniteDifference0 = topRightDepth - bottomLeftDepth;
+                float depthFiniteDifference1 = topLeftDepth - bottomRightDepth;
+                float edgeDepth = sqrt(pow(depthFiniteDifference0, 2) + pow(depthFiniteDifference1, 2));
+                edgeDepth = edgeDepth > normalThreshold ? 1 : 0;
+                return edgeDepth;
             }
 
             fixed4 frag(v2f i) : SV_Target
@@ -98,60 +133,18 @@ Shader "Hidden/Pixel"
                 int texelX = floor(i.uv.x * _Resolution.x);
                 int texelY = floor(i.uv.y * _Resolution.y);
                 float2 cord = pixelateCoord(float2(texelX, texelY));
-                return tex2D(_MainTex,cord);
 
-
-                float4 NormalDepth;
-                DecodeDepthNormal(tex2D(_CameraDepthNormalsTexture, i.uv), NormalDepth.w, NormalDepth.xyz);
-                float2 texelSize = _MainTex_TexelSize;
-
-                float2 curDepth = NormalDepth.w;
-                float2 bottomLeftDepth = getDepth(
-                    i.uv, -float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
-                float2 topRightDepth = getDepth(
-                    i.uv, float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
-                float2 bottomRightDepth = getDepth(
-                    i.uv, float2(_MainTex_TexelSize.x, -_MainTex_TexelSize.y));
-                float2 topLeftDepth = getDepth(i.uv, float2(-_MainTex_TexelSize.x,
-                                                            _MainTex_TexelSize.y));
-
-                float depthFiniteDifference0 = topRightDepth - bottomLeftDepth;
-                float depthFiniteDifference1 = topLeftDepth - bottomRightDepth;
-                float edgeDepth = sqrt(pow(depthFiniteDifference0, 2) + pow(depthFiniteDifference1, 2)) * 100;
-                edgeDepth = edgeDepth > _DepthThreshold ? 1 : 0;
-
-                float3 bottomLeftNormal = getNormals(i.uv, -float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
-                float3 topRightNormal = getNormals(i.uv, float2(_MainTex_TexelSize.x, _MainTex_TexelSize.y));
-                float3 bottomRightNormal = getNormals(i.uv, float2(_MainTex_TexelSize.x, -_MainTex_TexelSize.y));
-                float3 topLeftNormal = getNormals(i.uv, float2(-_MainTex_TexelSize.x, _MainTex_TexelSize.y));
-
-                float3 normalFiniteDifference0 = topRightNormal - bottomLeftNormal;
-                float3 normalFiniteDifference1 = topLeftNormal - bottomRightNormal;
-
-                float edgeNormal = sqrt(
-                    dot(normalFiniteDifference0, normalFiniteDifference0) + dot(
-                        normalFiniteDifference1, normalFiniteDifference1));
-                float dNFD0 = dot(normalFiniteDifference0, normalFiniteDifference0);
-                float dNFD1 = dot(normalFiniteDifference1, normalFiniteDifference1);
-
-                //edgeNormal = edgeNormal > _NormalThreshold ? 1 : 0;
-                dNFD0 = dNFD0;
-                dNFD1 = dNFD1;
-                //edgeNormal = sqrt(dNFD0 + dNFD1);
-                edgeNormal = edgeNormal > _NormalThreshold ? 1 : 0;
-
-
-                float3 viewPos = UnityObjectToViewPos(i.vertex);
-                float3 viewDir = normalize(viewPos);
-
+                float edgeDepth = GetDepthBorder(cord, _DepthThreshold);
+                float edgeNormal = GetNormalBorder(cord, _NormalThreshold);
+                return edgeDepth * _OutlineColor + edgeNormal;
                 float edge = max(edgeDepth, edgeNormal);
-
-                half4 color = 0;
-                color.rgb = NormalDepth.xyz;
-                if (edgeDepth > 0) { return tex2D(_MainTex, i.uv) * 0.4 + _OutlineColor; }
+                if (edgeDepth > 0)
+                {
+                    return edge;
+                }
                 else
                 {
-                    return tex2D(_MainTex, i.uv) + edgeDepth * _OutlineColor;
+                    return tex2D(_MainTex, i.uv);
                 }
             }
             ENDCG

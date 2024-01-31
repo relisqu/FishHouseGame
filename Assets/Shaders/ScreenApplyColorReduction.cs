@@ -1,4 +1,6 @@
-﻿using Sirenix.Utilities;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -13,7 +15,7 @@ namespace Shaders
 
         public Texture2D colors;
 
-
+        private List<Color> finalColors;
         private void Start()
         {
             Cam.depthTextureMode = DepthTextureMode.DepthNormals;
@@ -22,13 +24,18 @@ namespace Shaders
         private void OnRenderImage(RenderTexture src, RenderTexture dest)
         {
             
-            Color[] finalColors = new Color[colors.width];
-            for (var index = 0; index < finalColors.Length; index++)
+            finalColors = new List<Color>();
+            finalColors.Clear();
+            for (var index = 0; index < colors.width; index++)
             {
-                finalColors[index] = colors.GetPixelBilinear((float)index/finalColors.Length,0);
+                var color = colors.GetPixelBilinear((float)index /  colors.width, 0);
+                if (!finalColors.Contains(color))
+                {
+                    finalColors.Add(color);
+                }
             }
-            Mat.SetColorArray("_Pallet", finalColors);
-            Mat.SetInt("_PixelPalletCount", finalColors.Length);
+            Mat.SetColorArray("_Pallet", finalColors.ToArray());
+            Mat.SetInt("_PixelPalletCount", finalColors.Count);
 
             Graphics.Blit(src, dest, Mat);
         }
