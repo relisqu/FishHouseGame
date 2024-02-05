@@ -13,6 +13,7 @@ Shader "Hidden/Pixel"
 
         _NormalThreshold ("NormalThreshold",float)=0.04
         _OutlineColor("OutlineColor", Color) = (0.2,0.2,0.9,1)
+        _InnerOutlineColor("InnerOutlineColor", Color) = (0.8,0.8,0.8,1)
         [Toggle] _PerspectiveCorrection ("Use Perspective Correction", Float) = 1.0
     }
     SubShader
@@ -64,6 +65,7 @@ Shader "Hidden/Pixel"
             sampler2D _MainTex;
             float2 _MainTex_TexelSize;
             float4 _OutlineColor;
+            float4 _InnerOutlineColor;
 
             vector _Resolution;
             float _PixelSize;
@@ -75,8 +77,8 @@ Shader "Hidden/Pixel"
             {
                 float4 NormalDepth;
                 DecodeDepthNormal(tex2D(_CameraDepthNormalsTexture, uv + offset), NormalDepth.w, NormalDepth.xyz);
-                float depth =NormalDepth.w;
-                depth = clamp(NormalDepth.w*100, 0, 1);
+                float depth = NormalDepth.w;
+                depth = clamp(NormalDepth.w * 100, 0, 1);
                 return depth;
             }
 
@@ -102,9 +104,9 @@ Shader "Hidden/Pixel"
                 float depth = getDepth(cord, 0);
                 float2 uvs[4];
                 uvs[0] = cord + pixelateCoord(float2(0.0, _PixelSize));
-                uvs[1] = cord -  pixelateCoord(float2(0.0, _PixelSize));
-                uvs[2] = cord +  pixelateCoord(float2(_PixelSize, 0));
-                uvs[3] = cord -  pixelateCoord(float2(_PixelSize, 0));
+                uvs[1] = cord - pixelateCoord(float2(0.0, _PixelSize));
+                uvs[2] = cord + pixelateCoord(float2(_PixelSize, 0));
+                uvs[3] = cord - pixelateCoord(float2(_PixelSize, 0));
 
                 float depths[4];
                 float depthDiff = 0.0;
@@ -118,28 +120,39 @@ Shader "Hidden/Pixel"
                 float depthEdge = step(_DepthThreshold, depthDiff);
 
                 float3 normal = getNormals(cord, 0);
+                float3 bottomLeftNormal = getNormals(cord, pixelateCoord(-float2(_PixelSize, _PixelSize)));
+                float3 topRightNormal = getNormals(cord, pixelateCoord(float2(_PixelSize, _PixelSize)));
+                float3 bottomRightNormal = getNormals(cord, pixelateCoord(float2(_PixelSize, -_PixelSize)));
+                float3 topLeftNormal = getNormals(cord, pixelateCoord(float2(-_PixelSize, _PixelSize)));
+
+                float3 normalFiniteDifference0 = topRightNormal - bottomLeftNormal;
+                float3 normalFiniteDifference1 = topLeftNormal - bottomRightNormal;
                 float3 normals[4];
-                float dotsum = 0.0;
+                float3 normalsDiff = 0.0;
+
                 for (int i = 0; i < 4; ++i)
                 {
                     normals[i] = getNormals(uvs[i], 0);
-                    float3 nDiff = normal - normals[i];
-                    dotsum += dot(nDiff, nDiff);
+                    normalsDiff += normal - normals[i];
                 }
-                float indic = sqrt(dotsum);
-                float normalEdge = step(_NormalThreshold, indic);
+                float normalsEdge = step(_NormalThreshold, normalsDiff);
+
 
                 half4 color = 0;
                 color.rgb = normal;
-                float outline = max(depthEdge, normalEdge);
-                
+                float outline = max(depthEdge, normalsEdge);
+
                 if (depthEdge > 0)
                 {
-                    return depthEdge*_OutlineColor;
+                    return depthEdge * _OutlineColor;
+                }
+                if (normalsEdge > 0)
+                {
+                    return (tex2D(_MainTex, cord)*0.5f)+_InnerOutlineColor;
                 }
                 else
                 {
-                    return depth;
+                    return tex2D(_MainTex, cord);
                 }
             }
             ENDCG

@@ -32,11 +32,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _DepthThreshold: 0.04
-    - _DitherAmount: 0.01
+    - _DitherAmount: 0.005
     - _NormalThreshold: 0.04
     - _PerspectiveCorrection: 1
     - _PixelPalletCount: 64
-    - _PixelSize: 16
+    - _PixelSize: 8
     - _Scale: 1
     m_Colors:
     - _OutlineColor: {r: 0.19999996, g: 0.19999996, b: 0.9, a: 1}

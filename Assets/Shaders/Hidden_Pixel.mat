@@ -26,15 +26,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DepthThreshold: 0.07
+    - _DepthThreshold: 0.04
     - _MainTex_TexelSize: 1
-    - _NormalThreshold: 0.01
+    - _NormalThreshold: 0.6
     - _PerspectiveCorrection: 0
-    - _PixelSize: 16
+    - _PixelSize: 8
     - _PixelYSize: 64
     - _Resolution: 1024
     - _Scale: 8.13
     m_Colors:
-    - _OutlineColor: {r: 1, g: 0.72075474, b: 0.72075474, a: 1}
+    - _InnerOutlineColor: {r: 0.8838412, g: 0.6940904, b: 0.9150943, a: 1}
+    - _OutlineColor: {r: 0.2264151, g: 0.017942311, b: 0.017942311, a: 1}
     - _Resolution: {r: 1920, g: 1080, b: 0, a: 0}
   m_BuildTextureStacks: []
