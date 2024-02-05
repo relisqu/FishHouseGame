@@ -75,8 +75,8 @@ Shader "Hidden/Pixel"
             {
                 float4 NormalDepth;
                 DecodeDepthNormal(tex2D(_CameraDepthNormalsTexture, uv + offset), NormalDepth.w, NormalDepth.xyz);
-                float depth = 1 - NormalDepth.w * 100;
-                //depth = clamp(NormalDepth.w, 0, 1);
+                float depth =NormalDepth.w;
+                depth = clamp(NormalDepth.w*100, 0, 1);
                 return depth;
             }
 
@@ -101,10 +101,10 @@ Shader "Hidden/Pixel"
                 float2 cord = pixelateCoord(float2(texelX, texelY));
                 float depth = getDepth(cord, 0);
                 float2 uvs[4];
-                uvs[0] = cord + float2(0.0, _MainTex_TexelSize.y);
-                uvs[1] = cord - float2(0.0, _MainTex_TexelSize.y);
-                uvs[2] = cord + float2(_MainTex_TexelSize.x, 0);
-                uvs[3] = cord - float2(_MainTex_TexelSize.x, 0);
+                uvs[0] = cord + pixelateCoord(float2(0.0, _PixelSize));
+                uvs[1] = cord -  pixelateCoord(float2(0.0, _PixelSize));
+                uvs[2] = cord +  pixelateCoord(float2(_PixelSize, 0));
+                uvs[3] = cord -  pixelateCoord(float2(_PixelSize, 0));
 
                 float depths[4];
                 float depthDiff = 0.0;
@@ -129,8 +129,18 @@ Shader "Hidden/Pixel"
                 float indic = sqrt(dotsum);
                 float normalEdge = step(_NormalThreshold, indic);
 
-                float outline =max(depthEdge,normalEdge);
-                return outline;
+                half4 color = 0;
+                color.rgb = normal;
+                float outline = max(depthEdge, normalEdge);
+                
+                if (depthEdge > 0)
+                {
+                    return depthEdge*_OutlineColor;
+                }
+                else
+                {
+                    return depth;
+                }
             }
             ENDCG
         }
